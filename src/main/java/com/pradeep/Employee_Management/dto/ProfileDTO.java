@@ -2,15 +2,14 @@ package com.pradeep.Employee_Management.dto;
 
 import java.time.LocalDate;
 
-import com.pradeep.Employee_Management.entity.Address;
-
 public class ProfileDTO {
 	private Integer profileId;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	private String designation;
 	private String employeePhoneNo;
-	private Address address;
+	private AddressDTO address;
+	private EmployeeDTO employee;
 	public Integer getProfileId() {
 		return profileId;
 	}
@@ -41,10 +40,17 @@ public class ProfileDTO {
 	public void setEmployeePhoneNo(String employeePhoneNo) {
 		this.employeePhoneNo = employeePhoneNo;
 	}
-	public Address getAddress() {
+	public AddressDTO getAddress() {
 		return address;
 	}
-	public void setAddress(Address address) {
+	public void setAddress(AddressDTO address) {
 		this.address = address;
 	}
+	public EmployeeDTO getEmployee() {
+		return employee;
+	}
+	public void setEmployee(EmployeeDTO employee) {
+		this.employee = employee;
+	}
+	
 }

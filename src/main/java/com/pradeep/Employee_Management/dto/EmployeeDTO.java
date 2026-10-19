@@ -2,10 +2,7 @@ package com.pradeep.Employee_Management.dto;
 
 import java.util.List;
 
-import com.pradeep.Employee_Management.entity.Department;
 import com.pradeep.Employee_Management.entity.Gender;
-import com.pradeep.Employee_Management.entity.Manager;
-import com.pradeep.Employee_Management.entity.Projects;
 import com.pradeep.Employee_Management.entity.Teams;
 
 public class EmployeeDTO {
@@ -15,9 +12,9 @@ public class EmployeeDTO {
 
 	private Gender gender;
 	private Teams team;
-	private Department department;
-	private Manager manager;
-	private List<Projects> projects;
+	private DepartmentDTO department;
+	private ManagerDTO manager;
+	private List<ProjectsDTO> projects;
 	public Integer getEmployeeId() {
 		return employeeId;
 	}
@@ -48,22 +45,23 @@ public class EmployeeDTO {
 	public void setTeam(Teams team) {
 		this.team = team;
 	}
-	public Department getDepartment() {
+	public DepartmentDTO getDepartment() {
 		return department;
 	}
-	public void setDepartment(Department department) {
+	public void setDepartment(DepartmentDTO department) {
 		this.department = department;
 	}
-	public Manager getManager() {
+	public ManagerDTO getManager() {
 		return manager;
 	}
-	public void setManager(Manager manager) {
+	public void setManager(ManagerDTO manager) {
 		this.manager = manager;
 	}
-	public List<Projects> getProjects() {
+	public List<ProjectsDTO> getProjects() {
 		return projects;
 	}
-	public void setProjects(List<Projects> projects) {
+	public void setProjects(List<ProjectsDTO> projects) {
 		this.projects = projects;
 	}
+	
 }
