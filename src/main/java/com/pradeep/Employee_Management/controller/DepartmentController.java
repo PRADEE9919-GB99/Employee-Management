@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,6 +62,15 @@ public class DepartmentController {
 
 		DepartmentDTO department = departmentService.updateDepartment(id, dto);
 		String message = environment.getProperty("DEPARTMENT.API.UPDATE_SUCCESS");
+		return new ResponseEntity<>(message, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> deleteDepartment(@PathVariable Long id) throws EmployeeException {
+
+		departmentService.deleteDepartment(id);
+
+		String message = environment.getProperty("DEPARTMENT.API.DELETE_SUCCESS");
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 }

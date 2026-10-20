@@ -75,7 +75,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public void deleteDepartment(Long id) throws EmployeeException {
 		// TODO Auto-generated method stub
+		if (id == null || id <= 0) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 
+		Department department = departmentRepo.findById(id)
+				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
+
+		departmentRepo.delete(department);
 	}
 
 }
