@@ -5,7 +5,7 @@ import java.util.List;
 import com.pradeep.Employee_Management.dto.AddressDTO;
 
 public interface AddressService {
-	AddressDTO createAddress(AddressDTO dto);
+	Integer createAddress(AddressDTO dto);
 
 	AddressDTO getAddressById(Integer id);
 
