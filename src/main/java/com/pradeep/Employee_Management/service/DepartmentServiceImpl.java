@@ -24,31 +24,37 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public Long createDepartment(DepartmentDTO dto) throws EmployeeException {
 		Department department = departmentUtil.toEntity(dto);
-		Department savedDepartment = departmentRepo.save(department);
+		departmentRepo.save(department);
 
 		return department.getDepartmentId();
 	}
 
 	@Override
-	public DepartmentDTO getDepartmentById(Long id) {
+	public DepartmentDTO getDepartmentById(Long id) throws EmployeeException {
+		if (id == null || id <= 0) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
+
+		Department department = departmentRepo.findById(id)
+				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
+
+		return departmentUtil.toDTO(department);
+	}
+
+	@Override
+	public List<DepartmentDTO> getAllDepartments() throws EmployeeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<DepartmentDTO> getAllDepartments() {
+	public DepartmentDTO updateDepartment(Long id, DepartmentDTO dto) throws EmployeeException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public DepartmentDTO updateDepartment(Long id, DepartmentDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteDepartment(Long id) {
+	public void deleteDepartment(Long id) throws EmployeeException {
 		// TODO Auto-generated method stub
 
 	}

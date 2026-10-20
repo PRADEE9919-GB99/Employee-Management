@@ -35,11 +35,12 @@ public class AddressController {
 	
 
 	@PostMapping
-	public ResponseEntity<Integer> addAddress(@RequestBody AddressDTO addressDTO) throws EmployeeException {
+	public ResponseEntity<String> addAddress(@RequestBody AddressDTO addressDTO) throws EmployeeException {
 
 		Integer addressId = addressService.createAddress(addressDTO);
+		String message=environment.getProperty("ADDRESS.API.SUCCESS");
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(addressId);
+		return ResponseEntity.status(HttpStatus.CREATED).body(message+addressId);
 	}
 
 	@GetMapping("/{addressId}")
@@ -59,12 +60,13 @@ public class AddressController {
 	}
 
 	@PutMapping("/{addressId}")
-	public ResponseEntity<AddressDTO> updateAddress(@PathVariable Integer addressId, @RequestBody AddressDTO dto)
+	public ResponseEntity<String> updateAddress(@PathVariable Integer addressId, @RequestBody AddressDTO dto)
 			throws EmployeeException {
 
 		AddressDTO address = addressService.updateAddress(addressId, dto);
+		String message=environment.getProperty("ADDRESS.API.UPDATE_SUCCESS");
 
-		return new ResponseEntity<>(address, HttpStatus.OK);
+		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{addressId}")
