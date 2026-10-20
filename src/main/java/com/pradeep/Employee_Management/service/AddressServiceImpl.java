@@ -53,7 +53,15 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public AddressDTO updateAddress(Integer id, AddressDTO dto) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		Address address = addressRepo.findById(id)
+				.orElseThrow(() -> new EmployeeException("ADDRESS.SERVICE_ADDRESS_NOT_FOUND"));
+
+		Address updatedAddress = addressUtil.toEntity(dto);
+		updatedAddress.setAddressId(address.getAddressId());
+
+		addressRepo.save(updatedAddress);
+
+		return addressUtil.toDTO(updatedAddress);
 	}
 
 	@Override
