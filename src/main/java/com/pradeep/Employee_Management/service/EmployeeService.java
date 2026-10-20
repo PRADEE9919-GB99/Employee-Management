@@ -3,19 +3,20 @@ package com.pradeep.Employee_Management.service;
 import java.util.List;
 
 import com.pradeep.Employee_Management.dto.EmployeeDTO;
+import com.pradeep.Employee_Management.exception.EmployeeException;
 
 public interface EmployeeService {
-	EmployeeDTO createEmployee(EmployeeDTO dto);
+	Integer createEmployee(EmployeeDTO dto)throws EmployeeException;
 
-	EmployeeDTO getEmployeeById(Integer id);
+	EmployeeDTO getEmployeeById(Integer id)throws EmployeeException;
 
-	List<EmployeeDTO> getAllEmployees();
+	List<EmployeeDTO> getAllEmployees()throws EmployeeException;
 
-	EmployeeDTO updateEmployee(Integer id, EmployeeDTO dto);
+	EmployeeDTO updateEmployee(Integer id, EmployeeDTO dto)throws EmployeeException;
 
-	void deleteEmployee(Integer id);
+	void deleteEmployee(Integer id)throws EmployeeException;
 //
-//	List<EmployeeDTO> getEmployeesByDepartment(Long departmentId);
+//	List<EmployeeDTO> getEmployeesByDepartment(Long departmentId)throws EmployeeException;
 //
-//	List<EmployeeDTO> getEmployeesByManager(Integer managerId);
+//	List<EmployeeDTO> getEmployeesByManager(Integer managerId)throws EmployeeException;
 }

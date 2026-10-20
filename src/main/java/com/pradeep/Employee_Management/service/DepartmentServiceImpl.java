@@ -7,7 +7,7 @@ import com.pradeep.Employee_Management.dto.DepartmentDTO;
 public class DepartmentServiceImpl implements DepartmentService {
 
 	@Override
-	public DepartmentDTO createDepartment(DepartmentDTO dto) {
+	public Integer createDepartment(DepartmentDTO dto) {
 		// TODO Auto-generated method stub
 		return null;
 	}

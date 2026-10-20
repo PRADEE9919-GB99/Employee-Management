@@ -7,7 +7,7 @@ import com.pradeep.Employee_Management.dto.ProjectsDTO;
 public class ProjectsServiceImpl implements ProjectsService {
 
 	@Override
-	public ProjectsDTO createProject(ProjectsDTO dto) {
+	public Integer createProject(ProjectsDTO dto) {
 		// TODO Auto-generated method stub
 		return null;
 	}

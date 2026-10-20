@@ -7,7 +7,7 @@ import com.pradeep.Employee_Management.dto.ProfileDTO;
 public class ProfileServiceImpl implements ProfileService {
 
 	@Override
-	public ProfileDTO createProfile(ProfileDTO dto) {
+	public Integer createProfile(ProfileDTO dto) {
 		// TODO Auto-generated method stub
 		return null;
 	}
