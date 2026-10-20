@@ -67,7 +67,10 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public void deleteAddress(Integer id) throws EmployeeException {
 		// TODO Auto-generated method stub
+		Address address = addressRepo.findById(id)
+				.orElseThrow(() -> new EmployeeException("ADDRESS.SERVICE_ADDRESS_NOT_FOUND"));
 
+		addressRepo.delete(address);
 	}
 
 }

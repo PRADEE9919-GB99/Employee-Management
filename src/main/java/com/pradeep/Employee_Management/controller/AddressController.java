@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,13 +53,21 @@ public class AddressController {
 		return new ResponseEntity<>(addresses, HttpStatus.OK);
 	}
 
-	@PutMapping("/update/{addressId}")
+	@PutMapping("/{addressId}")
 	public ResponseEntity<AddressDTO> updateAddress(@PathVariable Integer addressId, @RequestBody AddressDTO dto)
 			throws EmployeeException {
 
 		AddressDTO address = addressService.updateAddress(addressId, dto);
 
 		return new ResponseEntity<>(address, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/{addressId}")
+	public ResponseEntity<String> deleteAddress(@PathVariable Integer addressId) throws EmployeeException {
+
+		addressService.deleteAddress(addressId);
+		String message = environment.getProperty("ADDRESS.API.DELETE_SUCCESS");
+		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
 }
