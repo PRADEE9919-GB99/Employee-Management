@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,5 +53,14 @@ public class DepartmentController {
 		List<DepartmentDTO> departments = departmentService.getAllDepartments();
 
 		return new ResponseEntity<>(departments, HttpStatus.OK);
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<String> updateDepartment(@PathVariable Long id, @RequestBody DepartmentDTO dto)
+			throws EmployeeException {
+
+		DepartmentDTO department = departmentService.updateDepartment(id, dto);
+		String message = environment.getProperty("DEPARTMENT.API.UPDATE_SUCCESS");
+		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 }

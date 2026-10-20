@@ -57,7 +57,19 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public DepartmentDTO updateDepartment(Long id, DepartmentDTO dto) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+
+		if (id == null || id <= 0) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
+
+		Department department = departmentRepo.findById(id)
+				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
+
+		department.setDepartmentName(dto.getDepartmentName());
+
+		Department updatedDepartment = departmentRepo.save(department);
+
+		return departmentUtil.toDTO(updatedDepartment);
 	}
 
 	@Override
