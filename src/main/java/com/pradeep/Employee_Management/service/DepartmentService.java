@@ -6,7 +6,7 @@ import com.pradeep.Employee_Management.dto.DepartmentDTO;
 import com.pradeep.Employee_Management.exception.EmployeeException;
 
 public interface DepartmentService {
-	Integer createDepartment(DepartmentDTO dto)throws EmployeeException ;
+	Long createDepartment(DepartmentDTO dto)throws EmployeeException ;
 
 	DepartmentDTO getDepartmentById(Long id)throws EmployeeException ;
 

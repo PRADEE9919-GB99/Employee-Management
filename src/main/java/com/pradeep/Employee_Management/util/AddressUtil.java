@@ -4,12 +4,14 @@ import org.springframework.stereotype.Component;
 
 import com.pradeep.Employee_Management.dto.AddressDTO;
 import com.pradeep.Employee_Management.entity.Address;
+import com.pradeep.Employee_Management.exception.EmployeeException;
 
 @Component
 public class AddressUtil {
-	public static Address toEntity(AddressDTO dto) {
-		if (dto == null)
-			return null;
+	public static Address toEntity(AddressDTO dto) throws EmployeeException {
+		if (dto == null) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 
 		Address address = new Address();
 		address.setAddressId(dto.getAddressId());
@@ -20,9 +22,10 @@ public class AddressUtil {
 		return address;
 	}
 
-	public static AddressDTO toDTO(Address address) {
-		if (address == null)
-			return null;
+	public static AddressDTO toDTO(Address address) throws EmployeeException {
+		if (address == null) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 
 		AddressDTO dto = new AddressDTO();
 		dto.setAddressId(address.getAddressId());

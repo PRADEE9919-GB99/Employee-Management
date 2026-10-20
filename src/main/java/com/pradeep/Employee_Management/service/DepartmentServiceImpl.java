@@ -2,14 +2,31 @@ package com.pradeep.Employee_Management.service;
 
 import java.util.List;
 
-import com.pradeep.Employee_Management.dto.DepartmentDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.pradeep.Employee_Management.dto.DepartmentDTO;
+import com.pradeep.Employee_Management.entity.Department;
+import com.pradeep.Employee_Management.exception.EmployeeException;
+import com.pradeep.Employee_Management.repository.DepartmentRepository;
+import com.pradeep.Employee_Management.util.DepartmentUtil;
+
+@Service
+@Transactional
 public class DepartmentServiceImpl implements DepartmentService {
+	@Autowired
+	private DepartmentUtil departmentUtil;
+
+	@Autowired
+	private DepartmentRepository departmentRepo;
 
 	@Override
-	public Integer createDepartment(DepartmentDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public Long createDepartment(DepartmentDTO dto) throws EmployeeException {
+		Department department = departmentUtil.toEntity(dto);
+		Department savedDepartment = departmentRepo.save(department);
+
+		return department.getDepartmentId();
 	}
 
 	@Override

@@ -1,9 +1,10 @@
 package com.pradeep.Employee_Management.entity;
 
+import com.pradeep.Employee_Management.enums.Status;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,7 +19,7 @@ public class Projects {
 	private String projectName;
 	@Enumerated(EnumType.STRING)
 	private Status status;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "employee_id")
 	private Employee employee;
 	@ManyToOne
@@ -64,4 +65,5 @@ public class Projects {
 	public void setManager(Manager manager) {
 		this.manager = manager;
 	}
+
 }

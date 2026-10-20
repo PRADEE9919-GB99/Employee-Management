@@ -1,6 +1,6 @@
 package com.pradeep.Employee_Management.dto;
 
-import com.pradeep.Employee_Management.entity.Status;
+import com.pradeep.Employee_Management.enums.Status;
 
 public class ProjectsDTO {
 	private Long projectId;

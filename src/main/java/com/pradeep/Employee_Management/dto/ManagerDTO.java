@@ -2,7 +2,7 @@ package com.pradeep.Employee_Management.dto;
 
 import java.util.List;
 
-import com.pradeep.Employee_Management.entity.Teams;
+import com.pradeep.Employee_Management.enums.Teams;
 
 public class ManagerDTO {
 	private Integer managerId;

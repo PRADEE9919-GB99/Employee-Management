@@ -10,17 +10,17 @@ import com.pradeep.Employee_Management.dto.ProjectsDTO;
 import com.pradeep.Employee_Management.entity.Employee;
 import com.pradeep.Employee_Management.entity.Manager;
 import com.pradeep.Employee_Management.entity.Projects;
+import com.pradeep.Employee_Management.exception.EmployeeException;
 @Component
 public class ManagerUtil {
-	public static Manager toEntity(ManagerDTO dto) {
+	public static Manager toEntity(ManagerDTO dto) throws EmployeeException {
 		return toEntity(dto, null);
 	}
 
-	public static Manager toEntity(ManagerDTO dto, Employee managerEmployee) {
-
-		if (dto == null)
-			return null;
-
+	public static Manager toEntity(ManagerDTO dto, Employee managerEmployee) throws EmployeeException {
+		if (dto == null) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 		Manager manager = new Manager();
 		manager.setManagerId(dto.getManagerId());
 		manager.setEmployee(managerEmployee);
@@ -29,10 +29,10 @@ public class ManagerUtil {
 		return manager;
 	}
 
-	public static ManagerDTO toDTO(Manager manager) {
-		if (manager == null)
-			return null;
-
+	public static ManagerDTO toDTO(Manager manager) throws EmployeeException {
+		if (manager == null) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 		ManagerDTO dto = new ManagerDTO();
 		dto.setManagerId(manager.getManagerId());
 		dto.setTeam(manager.getTeam());

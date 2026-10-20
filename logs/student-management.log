@@ -140,3 +140,232 @@
 2026-10-20 13:47:04 INFO  c.p.E.EmployeeManagementApplication - Started EmployeeManagementApplication in 4.859 seconds (process running for 5.323)
 2026-10-20 13:48:44 INFO  c.p.E.EmployeeManagementApplication - Starting EmployeeManagementApplication using Java 21.0.6 with PID 2112 (D:\Desktop\New folder\Pradeep\Employee-Management\Employee-Management\target\classes started by Praveen in D:\Desktop\New folder\Pradeep\Employee-Management\Employee-Management)
 2026-10-20 13:48:44 INFO  c.p.E.EmployeeManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2026-10-20 13:48:54 INFO  c.p.E.EmployeeManagementApplication - Starting EmployeeManagementApplication using Java 21.0.6 with PID 14256 (D:\Desktop\New folder\Pradeep\Employee-Management\Employee-Management\target\classes started by Praveen in D:\Desktop\New folder\Pradeep\Employee-Management\Employee-Management)
+2026-10-20 13:48:54 INFO  c.p.E.EmployeeManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2026-10-20 13:48:55 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-20 13:48:55 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 70 ms. Found 6 JPA repository interfaces.
+2026-10-20 13:48:55 INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-10-20 13:48:55 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-20 13:48:55 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-20 13:48:55 INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1212 ms
+2026-10-20 13:48:56 INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-20 13:48:56 INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-20 13:48:56 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-20 13:48:56 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-10-20 13:48:57 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@451af781
+2026-10-20 13:48:57 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-10-20 13:48:57 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-10-20 13:48:57 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/employee_management]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: employee_management/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-20 13:48:57 INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-20 13:48:58 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-20 13:48:58 INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-20 13:48:58 WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-20 13:48:58 INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-10-20 13:48:58 INFO  c.p.E.EmployeeManagementApplication - Started EmployeeManagementApplication in 4.475 seconds (process running for 4.935)
+2026-10-20 13:49:40 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-20 13:49:40 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-10-20 13:49:40 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-10-20 15:06:03 INFO  c.p.E.EmployeeManagementApplication - Starting EmployeeManagementApplication using Java 21.0.6 with PID 13064 (D:\Desktop\New folder\Pradeep\Employee-Management\Employee-Management\target\classes started by Praveen in D:\Desktop\New folder\Pradeep\Employee-Management\Employee-Management)
+2026-10-20 15:06:03 INFO  c.p.E.EmployeeManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2026-10-20 15:06:04 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-20 15:06:04 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 59 ms. Found 6 JPA repository interfaces.
+2026-10-20 15:06:04 INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-10-20 15:06:04 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-20 15:06:04 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-20 15:06:04 INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1221 ms
+2026-10-20 15:06:04 INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-20 15:06:04 INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-20 15:06:05 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-20 15:06:05 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-10-20 15:06:05 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@60a99f3d
+2026-10-20 15:06:05 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-10-20 15:06:05 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-10-20 15:06:05 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/employee_management]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: employee_management/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-20 15:06:06 ERROR o.s.o.j.LocalContainerEntityManagerFactoryBean - Failed to initialize JPA EntityManagerFactory: Association 'com.pradeep.Employee_Management.entity.Employee.projects' targets the type 'com.pradeep.Employee_Management.entity.Projects' which is not an '@Entity' type
+2026-10-20 15:06:06 WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Association 'com.pradeep.Employee_Management.entity.Employee.projects' targets the type 'com.pradeep.Employee_Management.entity.Projects' which is not an '@Entity' type
+2026-10-20 15:06:06 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-10-20 15:06:06 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-10-20 15:06:06 INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2026-10-20 15:06:06 INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-10-20 15:06:06 ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Association 'com.pradeep.Employee_Management.entity.Employee.projects' targets the type 'com.pradeep.Employee_Management.entity.Projects' which is not an '@Entity' type
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.pradeep.Employee_Management.EmployeeManagementApplication.main(EmployeeManagementApplication.java:10)
+Caused by: org.hibernate.AnnotationException: Association 'com.pradeep.Employee_Management.entity.Employee.projects' targets the type 'com.pradeep.Employee_Management.entity.Projects' which is not an '@Entity' type
+	at org.hibernate.boot.model.internal.CollectionBinder.detectManyToManyProblems(CollectionBinder.java:2530)
+	at org.hibernate.boot.model.internal.CollectionBinder.bindManyToManySecondPass(CollectionBinder.java:2061)
+	at org.hibernate.boot.model.internal.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:1480)
+	at org.hibernate.boot.model.internal.CollectionBinder$1.secondPass(CollectionBinder.java:1464)
+	at org.hibernate.boot.model.internal.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:39)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1769)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1735)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.coordinateProcessors(MetadataBuildingProcess.java:361)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:209)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1388)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.populateSessionFactoryBuilder(EntityManagerFactoryBuilderImpl.java:1468)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1450)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811)
+	... 15 common frames omitted
+2026-10-20 15:08:14 INFO  c.p.E.EmployeeManagementApplication - Starting EmployeeManagementApplication using Java 21.0.6 with PID 14816 (D:\Desktop\New folder\Pradeep\Employee-Management\Employee-Management\target\classes started by Praveen in D:\Desktop\New folder\Pradeep\Employee-Management\Employee-Management)
+2026-10-20 15:08:14 INFO  c.p.E.EmployeeManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2026-10-20 15:08:15 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-20 15:08:15 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 6 JPA repository interfaces.
+2026-10-20 15:08:15 INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-10-20 15:08:15 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-20 15:08:15 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-20 15:08:16 INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1184 ms
+2026-10-20 15:08:16 INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-20 15:08:16 INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-20 15:08:16 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-20 15:08:16 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-10-20 15:08:16 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c4ad54
+2026-10-20 15:08:16 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-10-20 15:08:16 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-10-20 15:08:16 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/employee_management]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: employee_management/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-20 15:08:17 ERROR o.s.o.j.LocalContainerEntityManagerFactoryBean - Failed to initialize JPA EntityManagerFactory: Incorrect use of entity type 'com.pradeep.Employee_Management.entity.Employee' (possibly due to missing association mapping annotation)
+2026-10-20 15:08:17 WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Incorrect use of entity type 'com.pradeep.Employee_Management.entity.Employee' (possibly due to missing association mapping annotation)
+2026-10-20 15:08:17 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-10-20 15:08:17 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-10-20 15:08:17 INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2026-10-20 15:08:17 INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-10-20 15:08:17 ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Incorrect use of entity type 'com.pradeep.Employee_Management.entity.Employee' (possibly due to missing association mapping annotation)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.pradeep.Employee_Management.EmployeeManagementApplication.main(EmployeeManagementApplication.java:10)
+Caused by: org.hibernate.MappingException: Incorrect use of entity type 'com.pradeep.Employee_Management.entity.Employee' (possibly due to missing association mapping annotation)
+	at org.hibernate.boot.model.process.internal.InferredBasicValueResolver.recommendedJdbcType(InferredBasicValueResolver.java:256)
+	at org.hibernate.boot.model.process.internal.InferredBasicValueResolver.from(InferredBasicValueResolver.java:162)
+	at org.hibernate.mapping.BasicValue.resolution(BasicValue.java:670)
+	at org.hibernate.mapping.BasicValue.buildResolution(BasicValue.java:475)
+	at org.hibernate.mapping.BasicValue.buildResolution(BasicValue.java:449)
+	at org.hibernate.mapping.BasicValue.resolve(BasicValue.java:366)
+	at org.hibernate.mapping.BasicValue.resolve(BasicValue.java:356)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.lambda$processValueResolvers$0(InFlightMetadataCollectorImpl.java:1758)
+	at java.base/java.util.ArrayList.removeIf(Unknown Source)
+	at java.base/java.util.ArrayList.removeIf(Unknown Source)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processValueResolvers(InFlightMetadataCollectorImpl.java:1758)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1747)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.coordinateProcessors(MetadataBuildingProcess.java:361)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:209)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1388)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.populateSessionFactoryBuilder(EntityManagerFactoryBuilderImpl.java:1468)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1450)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811)
+	... 15 common frames omitted
+Caused by: org.hibernate.type.descriptor.java.spi.JdbcTypeRecommendationException: Could not determine recommended JdbcType for Java type 'com.pradeep.Employee_Management.entity.Employee'
+	at org.hibernate.type.descriptor.java.spi.UnknownBasicJavaType.getRecommendedJdbcType(UnknownBasicJavaType.java:60)
+	at org.hibernate.boot.model.process.internal.InferredBasicValueResolver.recommendedJdbcType(InferredBasicValueResolver.java:250)
+	... 38 common frames omitted
+2026-10-20 15:13:50 INFO  c.p.E.EmployeeManagementApplication - Starting EmployeeManagementApplication using Java 21.0.6 with PID 14196 (D:\Desktop\New folder\Pradeep\Employee-Management\Employee-Management\target\classes started by Praveen in D:\Desktop\New folder\Pradeep\Employee-Management\Employee-Management)
+2026-10-20 15:13:50 INFO  c.p.E.EmployeeManagementApplication - No active profile set, falling back to 1 default profile: "default"
+2026-10-20 15:13:51 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-20 15:13:51 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 62 ms. Found 6 JPA repository interfaces.
+2026-10-20 15:13:52 INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-10-20 15:13:52 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-20 15:13:52 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-20 15:13:52 INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1232 ms
+2026-10-20 15:13:52 INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-20 15:13:52 INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-20 15:13:52 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-20 15:13:52 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-10-20 15:13:53 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7a274521
+2026-10-20 15:13:53 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-10-20 15:13:53 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-10-20 15:13:53 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/employee_management]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: employee_management/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-20 15:13:54 INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-20 15:13:54 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-20 15:13:54 INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-20 15:13:54 WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-20 15:13:55 INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-10-20 15:13:55 INFO  c.p.E.EmployeeManagementApplication - Started EmployeeManagementApplication in 4.601 seconds (process running for 5.011)
+2026-10-20 15:16:56 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-20 15:16:56 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-10-20 15:16:56 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms

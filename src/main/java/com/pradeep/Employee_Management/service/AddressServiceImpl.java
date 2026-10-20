@@ -14,10 +14,15 @@ import com.pradeep.Employee_Management.util.AddressUtil;
 
 @Service
 public class AddressServiceImpl implements AddressService {
-	@Autowired
+	
 	private AddressUtil addressUtil;
-	@Autowired
 	private AddressRepository addressRepo;
+
+	public AddressServiceImpl(AddressUtil addressUtil, AddressRepository addressRepo) {
+		super();
+		this.addressUtil = addressUtil;
+		this.addressRepo = addressRepo;
+	}
 
 	@Override
 	public Integer createAddress(AddressDTO dto) throws EmployeeException {

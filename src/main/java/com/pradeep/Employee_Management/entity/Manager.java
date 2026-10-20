@@ -2,6 +2,8 @@ package com.pradeep.Employee_Management.entity;
 
 import java.util.List;
 
+import com.pradeep.Employee_Management.enums.Teams;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

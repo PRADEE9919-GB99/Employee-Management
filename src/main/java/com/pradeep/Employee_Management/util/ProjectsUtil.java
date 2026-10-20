@@ -8,17 +8,18 @@ import com.pradeep.Employee_Management.dto.ProjectsDTO;
 import com.pradeep.Employee_Management.entity.Employee;
 import com.pradeep.Employee_Management.entity.Manager;
 import com.pradeep.Employee_Management.entity.Projects;
+import com.pradeep.Employee_Management.exception.EmployeeException;
 @Component
 public class ProjectsUtil {
-	public static Projects toEntity(ProjectsDTO dto) {
+	public static Projects toEntity(ProjectsDTO dto) throws EmployeeException {
 		return toEntity(dto, null, null);
 	}
 
-	public static Projects toEntity(ProjectsDTO dto, Employee employee, Manager manager) {
+	public static Projects toEntity(ProjectsDTO dto, Employee employee, Manager manager) throws EmployeeException {
 
-		if (dto == null)
-			return null;
-
+		if (dto == null) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 		Projects project = new Projects();
 		project.setProjectId(dto.getProjectId());
 		project.setProjectName(dto.getProjectName());
@@ -29,10 +30,10 @@ public class ProjectsUtil {
 		return project;
 	}
 
-	public static ProjectsDTO toDTO(Projects project) {
-		if (project == null)
-			return null;
-
+	public static ProjectsDTO toDTO(Projects project) throws EmployeeException {
+		if (project == null) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 		ProjectsDTO dto = new ProjectsDTO();
 		dto.setProjectId(project.getProjectId());
 		dto.setProjectName(project.getProjectName());

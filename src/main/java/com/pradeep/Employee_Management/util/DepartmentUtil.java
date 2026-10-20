@@ -4,13 +4,14 @@ import org.springframework.stereotype.Component;
 
 import com.pradeep.Employee_Management.dto.DepartmentDTO;
 import com.pradeep.Employee_Management.entity.Department;
+import com.pradeep.Employee_Management.exception.EmployeeException;
 @Component
 public class DepartmentUtil {
 	
-	public static Department toEntity(DepartmentDTO dto) {
-		if (dto == null)
-			return null;
-
+	public static Department toEntity(DepartmentDTO dto) throws EmployeeException {
+		if (dto == null) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 		Department department = new Department();
 		department.setDepartmentId(dto.getDepartmentId());
 		department.setDepartmentName(dto.getDepartmentName());
@@ -18,10 +19,10 @@ public class DepartmentUtil {
 		return department;
 	}
 
-	public static DepartmentDTO toDTO(Department department) {
-		if (department == null)
-			return null;
-
+	public static DepartmentDTO toDTO(Department department) throws EmployeeException {
+		if (department == null) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 		DepartmentDTO dto = new DepartmentDTO();
 		dto.setDepartmentId(department.getDepartmentId());
 		dto.setDepartmentName(department.getDepartmentName());

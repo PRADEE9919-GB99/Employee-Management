@@ -2,9 +2,11 @@ package com.pradeep.Employee_Management.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.pradeep.Employee_Management.dto.EmployeeDTO;
 import com.pradeep.Employee_Management.exception.EmployeeException;
-
+@Service
 public class EmployeeServiceImpl implements EmployeeService{
 
 	@Override

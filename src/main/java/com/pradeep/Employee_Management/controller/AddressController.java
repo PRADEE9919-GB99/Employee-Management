@@ -23,11 +23,16 @@ import com.pradeep.Employee_Management.service.AddressService;
 @RequestMapping("/address")
 public class AddressController {
 
-	@Autowired
+	
 	private AddressService addressService;
-
-	@Autowired
 	private Environment environment;
+	public AddressController(AddressService addressService, Environment environment) {
+		super();
+		this.addressService = addressService;
+		this.environment = environment;
+	}
+
+	
 
 	@PostMapping
 	public ResponseEntity<Integer> addAddress(@RequestBody AddressDTO addressDTO) throws EmployeeException {

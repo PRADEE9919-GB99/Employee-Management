@@ -1,4 +1,4 @@
-package com.pradeep.Employee_Management.entity;
+package com.pradeep.Employee_Management.enums;
 
 public enum Teams {
 	IT, HR, Finance, Operations, Receptions

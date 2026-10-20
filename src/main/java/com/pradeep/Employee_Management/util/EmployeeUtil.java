@@ -12,17 +12,17 @@ import com.pradeep.Employee_Management.entity.Department;
 import com.pradeep.Employee_Management.entity.Employee;
 import com.pradeep.Employee_Management.entity.Manager;
 import com.pradeep.Employee_Management.entity.Projects;
+import com.pradeep.Employee_Management.exception.EmployeeException;
 @Component
 public class EmployeeUtil {
-	public static Employee toEntity(EmployeeDTO dto) {
+	public static Employee toEntity(EmployeeDTO dto) throws EmployeeException {
 		return toEntity(dto, null, null);
 	}
 
-	public static Employee toEntity(EmployeeDTO dto, Department department, Manager manager) {
-
-		if (dto == null)
-			return null;
-
+	public static Employee toEntity(EmployeeDTO dto, Department department, Manager manager) throws EmployeeException {
+		if (dto == null) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 		Employee employee = new Employee();
 		employee.setEmployeeId(dto.getEmployeeId());
 		employee.setEmployeeName(dto.getEmployeeName());
@@ -35,10 +35,10 @@ public class EmployeeUtil {
 		return employee;
 	}
 
-	public static EmployeeDTO toDTO(Employee employee) {
-		if (employee == null)
-			return null;
-
+	public static EmployeeDTO toDTO(Employee employee) throws EmployeeException {
+		if (employee == null) {
+			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+		}
 		EmployeeDTO dto = new EmployeeDTO();
 		dto.setEmployeeId(employee.getEmployeeId());
 		dto.setEmployeeName(employee.getEmployeeName());
