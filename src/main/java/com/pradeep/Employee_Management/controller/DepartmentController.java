@@ -1,5 +1,7 @@
 package com.pradeep.Employee_Management.controller;
 
+import java.util.List;
+
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,5 +44,13 @@ public class DepartmentController {
 		DepartmentDTO department = departmentService.getDepartmentById(id);
 
 		return new ResponseEntity<>(department, HttpStatus.OK);
+	}
+
+	@GetMapping
+	public ResponseEntity<List<DepartmentDTO>> getAllDepartments() throws EmployeeException {
+
+		List<DepartmentDTO> departments = departmentService.getAllDepartments();
+
+		return new ResponseEntity<>(departments, HttpStatus.OK);
 	}
 }

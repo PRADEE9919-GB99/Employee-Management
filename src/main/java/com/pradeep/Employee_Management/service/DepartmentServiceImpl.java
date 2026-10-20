@@ -1,5 +1,6 @@
 package com.pradeep.Employee_Management.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Override
 	public List<DepartmentDTO> getAllDepartments() throws EmployeeException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Department> departments = departmentRepo.findAll();
+		List<DepartmentDTO> departmentDTOs = new ArrayList<>();
+
+		for (Department department : departments) {
+			departmentDTOs.add(departmentUtil.toDTO(department));
+		}
+
+		return departmentDTOs;
 	}
 
 	@Override
