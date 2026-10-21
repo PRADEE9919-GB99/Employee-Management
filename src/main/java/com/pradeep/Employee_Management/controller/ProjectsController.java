@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,10 +37,10 @@ public class ProjectsController {
 		return new ResponseEntity<>(message + projectId, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<ProjectsDTO> getProjectById(@PathVariable Long id) throws EmployeeException {
+	@GetMapping("/{projectid}")
+	public ResponseEntity<ProjectsDTO> getProjectById(@PathVariable Long projectid) throws EmployeeException {
 
-		ProjectsDTO dto = projectService.getProjectById(id);
+		ProjectsDTO dto = projectService.getProjectById(projectid);
 
 		return ResponseEntity.ok(dto);
 	}
@@ -50,5 +51,14 @@ public class ProjectsController {
 		List<ProjectsDTO> projects = projectService.getAllProjects();
 
 		return ResponseEntity.ok(projects);
+	}
+
+	@PutMapping("/{projectid}")
+	public ResponseEntity<String> updateProject(@PathVariable Long projectid, @RequestBody ProjectsDTO dto)
+			throws EmployeeException {
+
+		ProjectsDTO updatedProject = projectService.updateProject(projectid, dto);
+		String message = environment.getProperty("PROJECTS.API.UPDATE_SUCCESS");
+		return new ResponseEntity<>(message, HttpStatus.CREATED);
 	}
 }

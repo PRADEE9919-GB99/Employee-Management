@@ -83,7 +83,31 @@ public class ProjectsServiceImpl implements ProjectsService {
 	@Override
 	public ProjectsDTO updateProject(Long id, ProjectsDTO dto) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		Projects existingProject = projectsRepo.findById(id)
+				.orElseThrow(() -> new EmployeeException("PROJECT.NOT_FOUND"));
+
+		existingProject.setProjectName(dto.getProjectName());
+		existingProject.setStatus(dto.getStatus());
+
+		if (dto.getEmployee() != null && dto.getEmployee().getEmployeeId() != null) {
+
+			Employee employee = employeeRepo.findById(dto.getEmployee().getEmployeeId())
+					.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
+
+			existingProject.setEmployee(employee);
+		}
+
+		if (dto.getManager() != null && dto.getManager().getManagerId() != null) {
+
+			Manager manager = managerRepo.findById(dto.getManager().getManagerId())
+					.orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+
+			existingProject.setManager(manager);
+		}
+
+		Projects updatedProject = projectsRepo.save(existingProject);
+
+		return ProjectsUtil.toDTO(updatedProject);
 	}
 
 	@Override
