@@ -1,5 +1,6 @@
 package com.pradeep.Employee_Management.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -68,7 +69,13 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public List<ManagerDTO> getAllManagers() throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		List<ManagerDTO> managerDTOs = new ArrayList<>();
+
+		for (Manager manager : managerRepo.findAll()) {
+			managerDTOs.add(ManagerUtil.toDTO(manager));
+		}
+
+		return managerDTOs;
 	}
 
 	@Override
