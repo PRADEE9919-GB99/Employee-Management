@@ -2,7 +2,6 @@ package com.pradeep.Employee_Management.dto;
 
 import java.util.List;
 
-import com.pradeep.Employee_Management.enums.Teams;
 import com.pradeep.Employee_Management.enums.Gender;
 
 
@@ -12,7 +11,7 @@ public class EmployeeDTO {
 	private String email;
 
 	private Gender gender;
-	private Teams team;
+	private TeamsDTO team;
 	private DepartmentDTO department;
 	private ManagerDTO manager;
 	private List<ProjectsDTO> projects;
@@ -49,13 +48,7 @@ public class EmployeeDTO {
 		this.gender = gender;
 	}
 
-	public Teams getTeam() {
-		return team;
-	}
-
-	public void setTeam(Teams team) {
-		this.team = team;
-	}
+	
 
 	public DepartmentDTO getDepartment() {
 		return department;
@@ -79,6 +72,14 @@ public class EmployeeDTO {
 
 	public void setProjects(List<ProjectsDTO> projects) {
 		this.projects = projects;
+	}
+
+	public TeamsDTO getTeam() {
+		return team;
+	}
+
+	public void setTeam(TeamsDTO team) {
+		this.team = team;
 	}
 
 }

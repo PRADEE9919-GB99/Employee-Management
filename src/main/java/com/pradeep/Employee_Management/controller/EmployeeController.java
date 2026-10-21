@@ -1,10 +1,14 @@
 package com.pradeep.Employee_Management.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,4 +39,29 @@ public class EmployeeController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(message + employeeId);
 	}
 
+	@GetMapping("/{id}")
+	public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Integer id) throws EmployeeException {
+
+		EmployeeDTO employee = employeeService.getEmployeeById(id);
+
+		return new ResponseEntity<>(employee, HttpStatus.OK);
+	}
+
+	@GetMapping()
+	public ResponseEntity<List<EmployeeDTO>> getAllEmployees() throws EmployeeException {
+
+		List<EmployeeDTO> employees = employeeService.getAllEmployees();
+
+		return new ResponseEntity<>(employees, HttpStatus.OK);
+	}
+
+	@PutMapping("/{employeeId}")
+	public ResponseEntity<String> updateEmployee(@PathVariable Integer employeeId, @RequestBody EmployeeDTO dto)
+			throws EmployeeException {
+
+		employeeService.updateEmployee(employeeId, dto);
+		String message = environment.getProperty("EMPLOYEE.API.UPDATE_SUCCESS");
+
+		return ResponseEntity.status(HttpStatus.OK).body(message);
+	}
 }

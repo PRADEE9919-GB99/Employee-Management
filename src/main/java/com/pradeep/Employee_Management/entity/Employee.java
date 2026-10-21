@@ -3,7 +3,6 @@ package com.pradeep.Employee_Management.entity;
 import java.util.List;
 
 import com.pradeep.Employee_Management.enums.Gender;
-import com.pradeep.Employee_Management.enums.Teams;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,8 +28,8 @@ public class Employee {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Gender gender;
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "team_id")
 	private Teams team;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "department_id")

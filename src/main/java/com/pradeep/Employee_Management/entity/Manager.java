@@ -2,11 +2,7 @@ package com.pradeep.Employee_Management.entity;
 
 import java.util.List;
 
-import com.pradeep.Employee_Management.enums.Teams;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,7 +19,7 @@ public class Manager {
 	@JoinColumn(name = "employee_id", unique = true)
 	private Employee employee;
 
-	@Enumerated(EnumType.STRING)
+	@OneToOne(mappedBy = "manager")
 	private Teams team;
 	@OneToMany(mappedBy = "manager")
 	private List<Employee> employees;

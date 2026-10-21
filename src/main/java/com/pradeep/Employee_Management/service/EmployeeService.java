@@ -19,4 +19,10 @@ public interface EmployeeService {
 	List<EmployeeDTO> getEmployeesByDepartment(Long departmentId) throws EmployeeException;
 
 	List<EmployeeDTO> getEmployeesByManager(Integer managerId) throws EmployeeException;
+
+	void assignTeam(Integer employeeId, Integer teamId) throws EmployeeException;
+
+	void assignDepartment(Integer employeeId, Long departmentId) throws EmployeeException;
+
+	void assignManager(Integer employeeId, Integer managerId) throws EmployeeException;
 }
