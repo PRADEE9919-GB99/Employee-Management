@@ -45,4 +45,8 @@ public class ManagerDTO {
 		this.team = team;
 	}
 
+	public TeamsDTO getTeam() {
+		return team;
+	}
+
 }

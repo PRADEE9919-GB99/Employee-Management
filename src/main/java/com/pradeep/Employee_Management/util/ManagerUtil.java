@@ -30,7 +30,7 @@ public class ManagerUtil {
 
 		Manager manager = new Manager();
 
-		manager.setManagerId(dto.getManagerId());
+//		manager.setManagerId(dto.getManagerId());
 		manager.setEmployee(employee);
 		manager.setTeam(team);
 
