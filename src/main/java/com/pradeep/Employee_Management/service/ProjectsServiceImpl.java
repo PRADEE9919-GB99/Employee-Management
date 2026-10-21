@@ -113,7 +113,11 @@ public class ProjectsServiceImpl implements ProjectsService {
 	@Override
 	public void deleteProject(Long id) throws EmployeeException {
 		// TODO Auto-generated method stub
-
+		Projects project = projectsRepo.findById(id).orElseThrow(() -> new EmployeeException("PROJECT.NOT_FOUND"));
+		project.setEmployee(null);
+		project.setManager(null);
+		projectsRepo.deleteById(id);
+		;
 	}
 
 	@Override
