@@ -16,10 +16,10 @@ public class Teams {
 	private Integer teamsId;
 	private String teamName;
 	@OneToOne
-	@JoinColumn(name = "manager_id", unique = true)
+	@JoinColumn(name = "manager_id")
 	private Manager manager;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "department_id", nullable = false)
+	@JoinColumn(name = "department_id")
 	private Department department;
 
 	public Integer getTeamsId() {

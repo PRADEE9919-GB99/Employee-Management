@@ -2,7 +2,6 @@ package com.pradeep.Employee_Management.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pradeep.Employee_Management.dto.EmployeeDTO;
 import com.pradeep.Employee_Management.entity.Department;
 import com.pradeep.Employee_Management.entity.Employee;
+import com.pradeep.Employee_Management.entity.Manager;
+import com.pradeep.Employee_Management.entity.Teams;
 import com.pradeep.Employee_Management.exception.EmployeeException;
 import com.pradeep.Employee_Management.repository.DepartmentRepository;
 import com.pradeep.Employee_Management.repository.EmployeeRepository;
@@ -166,17 +167,61 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void assignTeam(Integer employeeId, Integer teamId) throws EmployeeException {
 		// TODO Auto-generated method stub
+		Employee employee = employeeRepo.findById(employeeId)
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
 
+		Teams team = teamsRepo.findById(teamId).orElseThrow(() -> new EmployeeException("TEAMS.SERVICE_NOT_FOUND"));
+
+		employee.setTeam(team);
+
+		employeeRepo.save(employee);
 	}
 
 	@Override
 	public void assignDepartment(Integer employeeId, Long departmentId) throws EmployeeException {
 		// TODO Auto-generated method stub
+		Employee employee = employeeRepo.findById(employeeId)
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+
+		Department department = departmentRepo.findById(departmentId)
+				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
+
+		employee.setDepartment(department);
+
+		employeeRepo.save(employee);
 
 	}
 
 	@Override
 	public void assignManager(Integer employeeId, Integer managerId) throws EmployeeException {
+		// TODO Auto-generated method stub
+		Employee employee = employeeRepo.findById(employeeId)
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+
+		Manager manager = managerRepo.findById(managerId)
+				.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
+
+		employee.setManager(manager);
+
+		employeeRepo.save(employee);
+
+	}
+
+	@Override
+	public void unAssignTeam(Integer employeeId) throws EmployeeException {
+		// TODO Auto-generated method stub
+		
+
+	}
+
+	@Override
+	public void unAassignDepartment(Integer employeeId) throws EmployeeException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void unAassignManager(Integer employeeId) throws EmployeeException {
 		// TODO Auto-generated method stub
 
 	}

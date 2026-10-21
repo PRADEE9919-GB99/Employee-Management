@@ -1,0 +1,35 @@
+package com.pradeep.Employee_Management.controller;
+
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pradeep.Employee_Management.dto.TeamsDTO;
+import com.pradeep.Employee_Management.exception.EmployeeException;
+import com.pradeep.Employee_Management.service.TeamsService;
+
+@RestController
+@RequestMapping("/teams")
+public class TeamsController {
+
+	private TeamsService teamsService;
+	private Environment environment;
+
+	public TeamsController(TeamsService teamsService, Environment environment) {
+		super();
+		this.teamsService = teamsService;
+		this.environment = environment;
+	}
+
+	@PostMapping
+	public ResponseEntity<String> createTeams(TeamsDTO dto) throws EmployeeException {
+
+		Integer teamsId = teamsService.createTeams(dto);
+		String message = environment.getProperty("ADDRESS.API.SUCCESS");
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(message + teamsId);
+	}
+}

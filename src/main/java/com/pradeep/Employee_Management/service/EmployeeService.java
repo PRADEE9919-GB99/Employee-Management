@@ -25,4 +25,10 @@ public interface EmployeeService {
 	void assignDepartment(Integer employeeId, Long departmentId) throws EmployeeException;
 
 	void assignManager(Integer employeeId, Integer managerId) throws EmployeeException;
+	
+	void unAssignTeam(Integer employeeId) throws EmployeeException;
+
+	void unAassignDepartment(Integer employeeId) throws EmployeeException;
+
+	void unAassignManager(Integer employeeId) throws EmployeeException;
 }

@@ -1,11 +1,11 @@
 USE employee_management;
-
+Drop table employee is exists;
 CREATE TABLE employee (
     employee_id INT PRIMARY KEY AUTO_INCREMENT,
     employee_name VARCHAR(100),
     email VARCHAR(150),
     gender VARCHAR(20) NOT NULL,
-    team VARCHAR(50) NOT NULL,
+    team_id INT,
     department_id BIGINT,
     manager_id INT,
 

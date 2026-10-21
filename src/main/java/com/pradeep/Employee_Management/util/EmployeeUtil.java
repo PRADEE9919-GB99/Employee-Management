@@ -57,24 +57,24 @@ public class EmployeeUtil {
 		dto.setGender(employee.getGender());
 
 		// Map Team
-//		if (employee.getTeam() != null) {
-//			TeamsDTO teamsDTO = new TeamsDTO();
-//
-//			teamsDTO.setTeamsId(employee.getTeam().getTeamsId());
-//			teamsDTO.setTeamName(employee.getTeam().getTeamName());
-//
-//			dto.setTeam(teamsDTO);
-//		}
+		if (employee.getTeam() != null) {
+			TeamsDTO teamsDTO = new TeamsDTO();
+
+			teamsDTO.setTeamsId(employee.getTeam().getTeamsId());
+			teamsDTO.setTeamName(employee.getTeam().getTeamName());
+
+			dto.setTeam(teamsDTO);
+		}
 
 		// Map Department
-//		if (employee.getDepartment() != null) {
-//			DepartmentDTO departmentDTO = new DepartmentDTO();
-//
-//			departmentDTO.setDepartmentId(employee.getDepartment().getDepartmentId());
-//			departmentDTO.setDepartmentName(employee.getDepartment().getDepartmentName());
-//
-//			dto.setDepartment(departmentDTO);
-//		}
+		if (employee.getDepartment() != null) {
+			DepartmentDTO departmentDTO = new DepartmentDTO();
+
+			departmentDTO.setDepartmentId(employee.getDepartment().getDepartmentId());
+			departmentDTO.setDepartmentName(employee.getDepartment().getDepartmentName());
+
+			dto.setDepartment(departmentDTO);
+		}
 
 		// Map Manager
 //		if (employee.getManager() != null) {

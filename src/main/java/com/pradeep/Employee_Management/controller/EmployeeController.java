@@ -92,4 +92,24 @@ public class EmployeeController {
 
 		return new ResponseEntity<>(employees, HttpStatus.OK);
 	}
+
+	@PutMapping("/teams/{employeeId}/{teamId}")
+	public ResponseEntity<String> assignTeam(@PathVariable Integer employeeId, @PathVariable Integer teamId)
+			throws EmployeeException {
+
+		employeeService.assignTeam(employeeId, teamId);
+		String message = environment.getProperty("EMPLOYEE.API.ASSIGN_TEAM");
+
+		return ResponseEntity.status(HttpStatus.OK).body(message);
+	}
+	
+	@PutMapping("/department/{employeeId}/{departmentId}")
+	public ResponseEntity<String> assignDepartment(@PathVariable Integer employeeId, @PathVariable  Long departmentId)
+			throws EmployeeException {
+
+		employeeService.assignDepartment(employeeId, departmentId);
+		String message = environment.getProperty("EMPLOYEE.API.ASSIGN_DEPARTMENT");
+
+		return ResponseEntity.status(HttpStatus.OK).body(message);
+	}
 }
