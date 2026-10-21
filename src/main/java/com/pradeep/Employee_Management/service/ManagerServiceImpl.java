@@ -60,7 +60,9 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public ManagerDTO getManagerById(Integer id) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		Manager manager = managerRepo.findById(id).orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+
+		return ManagerUtil.toDTO(manager);
 	}
 
 	@Override
