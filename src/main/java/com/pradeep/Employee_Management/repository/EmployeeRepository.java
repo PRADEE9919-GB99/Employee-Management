@@ -9,4 +9,13 @@ import com.pradeep.Employee_Management.entity.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer>  {
 	List<Employee> findByDepartment(Long departmentId);
 	List<Employee> findByManager(Integer managerId);
+
+boolean existsByEmail(String email);
+
+boolean existsByEmailAndEmployeeIdNot(String email, Integer employeeId);
+
+List<Employee> findByDepartmentDepartmentId(Long departmentId);
+
+List<Employee> findByManagerManagerId(Integer managerId);
+
 }
