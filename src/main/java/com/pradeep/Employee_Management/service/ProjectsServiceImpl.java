@@ -1,6 +1,7 @@
 package com.pradeep.Employee_Management.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,7 +69,15 @@ public class ProjectsServiceImpl implements ProjectsService {
 	@Override
 	public List<ProjectsDTO> getAllProjects() throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		List<Projects> projects = projectsRepo.findAll();
+
+		return projects.stream().map(project -> {
+			try {
+				return ProjectsUtil.toDTO(project);
+			} catch (EmployeeException e) {
+				throw new RuntimeException(e);
+			}
+		}).collect(Collectors.toList());
 	}
 
 	@Override

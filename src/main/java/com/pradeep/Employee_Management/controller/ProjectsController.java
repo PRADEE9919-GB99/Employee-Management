@@ -1,5 +1,7 @@
 package com.pradeep.Employee_Management.controller;
 
+import java.util.List;
+
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,5 +42,13 @@ public class ProjectsController {
 		ProjectsDTO dto = projectService.getProjectById(id);
 
 		return ResponseEntity.ok(dto);
+	}
+
+	@GetMapping
+	public ResponseEntity<List<ProjectsDTO>> getAllProjects() throws EmployeeException {
+
+		List<ProjectsDTO> projects = projectService.getAllProjects();
+
+		return ResponseEntity.ok(projects);
 	}
 }
