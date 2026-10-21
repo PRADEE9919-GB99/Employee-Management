@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.pradeep.Employee_Management.entity.Profile;
 
 public interface ProfileRepository extends JpaRepository<Profile, Integer> {
-	Optional<Profile> findByEmployee(Integer employeeId);
+//	Optional<Profile> findByEmployee(Integer employeeId);
 
 	boolean existsByEmployee_EmployeeId(Integer employeeId);
 
@@ -17,4 +17,5 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 
 	boolean existsByAddress_AddressIdAndProfileIdNot(Integer addressId, Integer profileId);
 
+	Optional<Profile> findByEmployee_EmployeeId(Integer employeeId);
 }
