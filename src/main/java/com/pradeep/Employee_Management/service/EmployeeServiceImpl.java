@@ -210,8 +210,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void unAssignTeam(Integer employeeId) throws EmployeeException {
 		// TODO Auto-generated method stub
-		
-
+		Employee employee = employeeRepo.findById(employeeId)
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+		employee.setTeam(null);
+		employeeRepo.save(employee);
 	}
 
 	@Override

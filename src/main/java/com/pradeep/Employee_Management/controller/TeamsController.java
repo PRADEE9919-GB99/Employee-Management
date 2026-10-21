@@ -28,7 +28,7 @@ public class TeamsController {
 	public ResponseEntity<String> createTeams(TeamsDTO dto) throws EmployeeException {
 
 		Integer teamsId = teamsService.createTeams(dto);
-		String message = environment.getProperty("ADDRESS.API.SUCCESS");
+		String message = environment.getProperty("TEAMS.API.SUCCESS");
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(message + teamsId);
 	}
