@@ -81,7 +81,34 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public ManagerDTO updateManager(Integer id, ManagerDTO dto) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		Manager existingManager = managerRepo.findById(id)
+				.orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+
+		if (dto.getEmployee() != null && dto.getEmployee().getEmployeeId() != null) {
+
+			Integer employeeId = dto.getEmployee().getEmployeeId();
+
+			Employee employee = employeeRepo.findById(employeeId)
+					.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
+
+//			if (managerRepo.existsByEmployee_EmployeeIdAndManagerIdNot(employeeId, id)) {
+//				throw new EmployeeException("MANAGER.ALREADY_EXISTS");
+//			}
+
+			existingManager.setEmployee(employee);
+		}
+
+		if (dto.getTeam() != null && dto.getTeam().getTeamsId() != null) {
+
+			Integer teamId = dto.getTeam().getTeamsId();
+
+			Teams team = teamsRepo.findById(teamId).orElseThrow(() -> new EmployeeException("TEAM.NOT_FOUND"));
+
+			existingManager.setTeam(team);
+		}
+
+		return ManagerUtil.toDTO(managerRepo.save(existingManager));
+
 	}
 
 	@Override

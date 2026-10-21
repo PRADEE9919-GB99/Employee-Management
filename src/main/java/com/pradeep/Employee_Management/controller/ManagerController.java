@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,5 +53,15 @@ public class ManagerController {
 		List<ManagerDTO> employee = managerService.getAllManagers();
 
 		return new ResponseEntity<List<ManagerDTO>>(employee, HttpStatus.OK);
+	}
+
+	@PutMapping("/{managerId}")
+	public ResponseEntity<String> updateEmployee(@PathVariable Integer managerId, @RequestBody ManagerDTO dto)
+			throws EmployeeException {
+
+		managerService.updateManager(managerId, dto);
+		String message = environment.getProperty("MANAGER.API.UPDATE_SUCCESS");
+
+		return ResponseEntity.status(HttpStatus.OK).body(message);
 	}
 }
