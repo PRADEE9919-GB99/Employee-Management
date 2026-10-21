@@ -1,5 +1,6 @@
 package com.pradeep.Employee_Management.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -74,13 +75,76 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public List<ProfileDTO> getAllProfiles() throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		List<ProfileDTO> profileDTOs = new ArrayList<>();
+
+		for (Profile profile : profileRepo.findAll()) {
+			profileDTOs.add(ProfileUtil.toDTO(profile));
+		}
+
+		return profileDTOs;
 	}
 
 	@Override
 	public ProfileDTO updateProfile(Integer id, ProfileDTO dto) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		Profile existingProfile = profileRepo.findById(id)
+				.orElseThrow(() -> new EmployeeException("PROFILE.NOT_FOUND"));
+
+		if (dto.getEmployee() != null) {
+
+			if (dto.getEmployee().getEmployeeId() == null) {
+				throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+			}
+
+			Integer employeeId = dto.getEmployee().getEmployeeId();
+
+			Employee employee = employeeRepo.findById(employeeId)
+					.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
+
+			if (profileRepo.existsByEmployee_EmployeeIdAndProfileIdNot(employeeId, id)) {
+				throw new EmployeeException("EMPLOYEE.PROFILE_ALREADY_EXISTS");
+			}
+
+			existingProfile.setEmployee(employee);
+		}
+
+		if (dto.getAddress() != null) {
+
+			if (dto.getAddress().getAddressId() == null) {
+				throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+			}
+
+			Integer addressId = dto.getAddress().getAddressId();
+
+			Address address = addressRepo.findById(addressId)
+					.orElseThrow(() -> new EmployeeException("ADDRESS.NOT_FOUND"));
+
+			if (profileRepo.existsByAddress_AddressIdAndProfileIdNot(addressId, id)) {
+				throw new EmployeeException("ADDRESS.ALREADY_ASSIGNED");
+			}
+
+			existingProfile.setAddress(address);
+		}
+
+		if (dto.getStartDate() != null) {
+			existingProfile.setStartDate(dto.getStartDate());
+		}
+
+		if (dto.getEndDate() != null) {
+			existingProfile.setEndDate(dto.getEndDate());
+		}
+
+		if (dto.getDesignation() != null) {
+			existingProfile.setDesignation(dto.getDesignation());
+		}
+
+		if (dto.getEmployeePhoneNo() != null) {
+			existingProfile.setEmployeePhoneNo(dto.getEmployeePhoneNo());
+		}
+
+		Profile updatedProfile = profileRepo.save(existingProfile);
+
+		return ProfileUtil.toDTO(updatedProfile);
 	}
 
 	@Override
