@@ -70,4 +70,13 @@ public class ProjectsController {
 		String message = environment.getProperty("PROJECTS.API.DELETE_SUCCESS");
 		return new ResponseEntity<>(message, HttpStatus.CREATED);
 	}
+
+	@GetMapping("/employee/{employeeId}")
+	public ResponseEntity<List<ProjectsDTO>> getProjectsByEmployee(@PathVariable Integer employeeId)
+			throws EmployeeException {
+
+		List<ProjectsDTO> projects = projectService.getProjectsByEmployee(employeeId);
+
+		return ResponseEntity.ok(projects);
+	}
 }

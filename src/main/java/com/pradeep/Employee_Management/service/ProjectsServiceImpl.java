@@ -123,7 +123,19 @@ public class ProjectsServiceImpl implements ProjectsService {
 	@Override
 	public List<ProjectsDTO> getProjectsByEmployee(Integer employeeId) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		if (!employeeRepo.existsById(employeeId)) {
+			throw new EmployeeException("EMPLOYEE.NOT_FOUND");
+		}
+
+		List<Projects> projects = projectsRepo.findByEmployee_EmployeeId(employeeId);
+
+		return projects.stream().map(project -> {
+			try {
+				return ProjectsUtil.toDTO(project);
+			} catch (EmployeeException e) {
+				throw new RuntimeException(e);
+			}
+		}).collect(Collectors.toList());
 	}
 
 	@Override
