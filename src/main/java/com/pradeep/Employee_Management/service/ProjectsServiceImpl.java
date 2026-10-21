@@ -141,7 +141,20 @@ public class ProjectsServiceImpl implements ProjectsService {
 	@Override
 	public List<ProjectsDTO> getProjectsByManager(Integer managerId) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		if (!managerRepo.existsById(managerId)) {
+			throw new EmployeeException("MANAGER.NOT_FOUND");
+		}
+
+		List<Projects> projects = projectsRepo.findByManager_ManagerId(managerId);
+
+		return projects.stream().map(project -> {
+			try {
+				return ProjectsUtil.toDTO(project);
+			} catch (EmployeeException e) {
+				throw new RuntimeException(e);
+			}
+		}).collect(Collectors.toList());
+
 	}
 
 }

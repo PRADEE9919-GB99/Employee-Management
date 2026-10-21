@@ -79,4 +79,13 @@ public class ProjectsController {
 
 		return ResponseEntity.ok(projects);
 	}
+
+	@GetMapping("/manager/{managerId}")
+	public ResponseEntity<List<ProjectsDTO>> getProjectsByManager(@PathVariable Integer managerId)
+			throws EmployeeException {
+
+		List<ProjectsDTO> projects = projectService.getProjectsByManager(managerId);
+
+		return ResponseEntity.ok(projects);
+	}
 }
