@@ -66,8 +66,9 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public ProfileDTO getProfileById(Integer id) throws EmployeeException {
-		// TODO Auto-generated method stub
-		return null;
+		Profile profile = profileRepo.findById(id).orElseThrow(() -> new EmployeeException("PROFILE.NOT_FOUND"));
+
+		return ProfileUtil.toDTO(profile);
 	}
 
 	@Override
