@@ -2,11 +2,13 @@ package com.pradeep.Employee_Management.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pradeep.Employee_Management.dto.EmployeeDTO;
+import com.pradeep.Employee_Management.entity.Department;
 import com.pradeep.Employee_Management.entity.Employee;
 import com.pradeep.Employee_Management.exception.EmployeeException;
 import com.pradeep.Employee_Management.repository.DepartmentRepository;
@@ -102,18 +104,44 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void deleteEmployee(Integer id) throws EmployeeException {
 		// TODO Auto-generated method stub
 
+		Employee employee = employeeRepo.findById(id)
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+
+		employeeRepo.delete(employee);
 	}
 
 	@Override
 	public List<EmployeeDTO> getEmployeesByDepartment(Long departmentId) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		Department department = departmentRepo.findById(departmentId)
+				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
+
+		List<Employee> employees = employeeRepo.findByDepartment(department.getDepartmentId());
+		List<EmployeeDTO> employeesDTO = new ArrayList<>();
+		for (Employee employee : employees) {
+			EmployeeDTO edto = new EmployeeDTO();
+			edto = employeeUtil.toDTO(employee);
+			employeesDTO.add(edto);
+		}
+
+		return employeesDTO;
 	}
 
 	@Override
 	public List<EmployeeDTO> getEmployeesByManager(Integer managerId) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		managerRepo.findById(managerId).orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
+
+		List<Employee> employees = employeeRepo.findByManager(managerId);
+		List<EmployeeDTO> employeesDTO = new ArrayList<>();
+		for (Employee employee : employees) {
+			EmployeeDTO edto = new EmployeeDTO();
+			edto = employeeUtil.toDTO(employee);
+			employeesDTO.add(edto);
+		}
+
+		return employeesDTO;
+
 	}
 
 	private void validateEmployee(EmployeeDTO dto) throws EmployeeException {
