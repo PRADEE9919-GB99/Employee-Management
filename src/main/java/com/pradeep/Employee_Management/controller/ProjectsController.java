@@ -3,6 +3,8 @@ package com.pradeep.Employee_Management.controller;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,5 +32,13 @@ public class ProjectsController {
 		Integer projectId = projectService.createProject(dto);
 		String message = environment.getProperty("PROJECTS.API.SUCCESS");
 		return new ResponseEntity<>(message + projectId, HttpStatus.CREATED);
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<ProjectsDTO> getProjectById(@PathVariable Long id) throws EmployeeException {
+
+		ProjectsDTO dto = projectService.getProjectById(id);
+
+		return ResponseEntity.ok(dto);
 	}
 }

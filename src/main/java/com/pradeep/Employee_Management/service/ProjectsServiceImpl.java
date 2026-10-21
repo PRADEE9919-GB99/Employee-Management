@@ -60,7 +60,9 @@ public class ProjectsServiceImpl implements ProjectsService {
 	@Override
 	public ProjectsDTO getProjectById(Long id) throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		Projects project = projectsRepo.findById(id).orElseThrow(() -> new EmployeeException("PROJECT.NOT_FOUND"));
+
+		return ProjectsUtil.toDTO(project);
 	}
 
 	@Override
