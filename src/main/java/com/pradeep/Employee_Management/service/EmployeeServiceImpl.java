@@ -219,13 +219,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void unAassignDepartment(Integer employeeId) throws EmployeeException {
 		// TODO Auto-generated method stub
-
+		Employee employee = employeeRepo.findById(employeeId)
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+		if(employee.getTeam()!=null||employee.getManager()!=null) {
+			throw new EmployeeException("EMPLOYEE.SERVICE_UNASSIGN");
+		}
+		employee.setDepartment(null);
+		employeeRepo.save(employee);
 	}
 
 	@Override
 	public void unAassignManager(Integer employeeId) throws EmployeeException {
 		// TODO Auto-generated method stub
-
+		Employee employee = employeeRepo.findById(employeeId)
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+		if(employee.getTeam()!=null) {
+			throw new EmployeeException("EMPLOYEE.SERVICE_UNASSIGN_TEAM");
+		}
+		employee.setManager(null);
+		employeeRepo.save(employee);
 	}
 
 }
