@@ -1,7 +1,5 @@
 package com.pradeep.Employee_Management.util;
 
-import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Component;
 
 import com.pradeep.Employee_Management.dto.DepartmentDTO;
@@ -77,13 +75,13 @@ public class EmployeeUtil {
 		}
 
 		// Map Manager
-//		if (employee.getManager() != null) {
-//			ManagerDTO managerDTO = new ManagerDTO();
-//
-//			managerDTO.setManagerId(employee.getManager().getManagerId());
-//
-//			dto.setManager(managerDTO);
-//		}
+		if (employee.getManager() != null) {
+			ManagerDTO managerDTO = new ManagerDTO();
+
+			managerDTO.setManagerId(employee.getManager().getManagerId());
+
+			dto.setManager(managerDTO);
+		}
 
 		// Map Projects
 //		if (employee.getProjects() != null) {

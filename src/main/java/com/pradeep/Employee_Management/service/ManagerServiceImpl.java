@@ -41,9 +41,9 @@ public class ManagerServiceImpl implements ManagerService {
 		Employee employee = employeeRepo.findById(employeeId)
 				.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
 
-//		if (managerRepo.existsByEmployeeId(employeeId)) {
-//			throw new EmployeeException("MANAGER.ALREADY_EXISTS");
-//		}
+		if (managerRepo.existsByEmployee_EmployeeId(employeeId)) {
+			throw new EmployeeException("MANAGER.ALREADY_EXISTS");
+		}
 
 		Teams team = null;
 
@@ -114,7 +114,12 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public void deleteManager(Integer id) throws EmployeeException {
 		// TODO Auto-generated method stub
-
+		Manager manager = managerRepo.findById(id).orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+		manager.setEmployee(null);
+		manager.setEmployees(null);
+		manager.setProjectsMentored(null);
+		manager.setTeam(null);
+		managerRepo.deleteById(id);
 	}
 
 }

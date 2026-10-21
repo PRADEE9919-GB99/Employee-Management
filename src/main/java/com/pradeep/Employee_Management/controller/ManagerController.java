@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pradeep.Employee_Management.dto.EmployeeDTO;
 import com.pradeep.Employee_Management.dto.ManagerDTO;
 import com.pradeep.Employee_Management.exception.EmployeeException;
 import com.pradeep.Employee_Management.service.ManagerService;
@@ -56,7 +56,7 @@ public class ManagerController {
 	}
 
 	@PutMapping("/{managerId}")
-	public ResponseEntity<String> updateEmployee(@PathVariable Integer managerId, @RequestBody ManagerDTO dto)
+	public ResponseEntity<String> updateManager(@PathVariable Integer managerId, @RequestBody ManagerDTO dto)
 			throws EmployeeException {
 
 		managerService.updateManager(managerId, dto);
@@ -64,4 +64,14 @@ public class ManagerController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(message);
 	}
+
+	@DeleteMapping("/{managerId}")
+	public ResponseEntity<String> deleteManager(@PathVariable Integer managerId) throws EmployeeException {
+
+		managerService.deleteManager(managerId);
+		String message = environment.getProperty("EMPLOYEE.API.DELETE_SUCCESS");
+
+		return ResponseEntity.status(HttpStatus.OK).body(message);
+	}
+
 }

@@ -6,8 +6,7 @@ import com.pradeep.Employee_Management.entity.Manager;
 
 public interface ManagerRepository extends JpaRepository<Manager, Integer> {
 
-//	boolean existsByEmployeeId(Integer employeeId);
+	boolean existsByEmployee_EmployeeId(Integer employeeId);
 
-//	boolean existsByEmployeeIdAndManagerIdNot(Integer employeeId, Integer managerId);
-
+	boolean existsByEmployee_EmployeeIdAndManagerIdNot(Integer employeeId, Integer managerId);
 }
