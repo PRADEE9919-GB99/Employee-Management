@@ -60,7 +60,7 @@ public class DepartmentController {
 	public ResponseEntity<String> updateDepartment(@PathVariable Long id, @RequestBody DepartmentDTO dto)
 			throws EmployeeException {
 
-		DepartmentDTO department = departmentService.updateDepartment(id, dto);
+		departmentService.updateDepartment(id, dto);
 		String message = environment.getProperty("DEPARTMENT.API.UPDATE_SUCCESS");
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}

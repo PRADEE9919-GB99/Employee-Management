@@ -5,12 +5,10 @@ import org.springframework.stereotype.Component;
 import com.pradeep.Employee_Management.dto.DepartmentDTO;
 import com.pradeep.Employee_Management.dto.EmployeeDTO;
 import com.pradeep.Employee_Management.dto.ManagerDTO;
-import com.pradeep.Employee_Management.dto.ProjectsDTO;
 import com.pradeep.Employee_Management.dto.TeamsDTO;
 import com.pradeep.Employee_Management.entity.Department;
 import com.pradeep.Employee_Management.entity.Employee;
 import com.pradeep.Employee_Management.entity.Manager;
-import com.pradeep.Employee_Management.entity.Projects;
 import com.pradeep.Employee_Management.entity.Teams;
 import com.pradeep.Employee_Management.exception.EmployeeException;
 @Component
@@ -92,14 +90,14 @@ public class EmployeeUtil {
 		return dto;
 	}
 
-	private static ProjectsDTO toProjectSummary(Projects project) {
-
-		ProjectsDTO dto = new ProjectsDTO();
-
-		dto.setProjectId(project.getProjectId());
-		dto.setProjectName(project.getProjectName());
-		dto.setStatus(project.getStatus());
-
-		return dto;
-	}
+//	private static ProjectsDTO toProjectSummary(Projects project) {
+//
+//		ProjectsDTO dto = new ProjectsDTO();
+//
+//		dto.setProjectId(project.getProjectId());
+//		dto.setProjectName(project.getProjectName());
+//		dto.setStatus(project.getStatus());
+//
+//		return dto;
+//	}
 }

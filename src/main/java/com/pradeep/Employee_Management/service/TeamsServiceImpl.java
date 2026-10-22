@@ -19,7 +19,7 @@ import com.pradeep.Employee_Management.util.TeamsUtil;
 @Transactional
 public class TeamsServiceImpl implements TeamsService {
 	private TeamsRepository teamsRepo;
-	private TeamsUtil teamsUtil;
+//	private TeamsUtil teamsUtil;
 	private ManagerRepository managerRepo;
 	private DepartmentRepository departmentRepo;
 
@@ -27,7 +27,7 @@ public class TeamsServiceImpl implements TeamsService {
 			DepartmentRepository departmentRepo) {
 		super();
 		this.teamsRepo = teamsRepo;
-		this.teamsUtil = teamsUtil;
+//		this.teamsUtil = teamsUtil;
 		this.managerRepo = managerRepo;
 		this.departmentRepo = departmentRepo;
 	}

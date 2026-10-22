@@ -46,7 +46,7 @@ public class DepartmentUtil {
 		DepartmentDTO dto = new DepartmentDTO();
 		dto.setDepartmentId(department.getDepartmentId());
 		dto.setDepartmentName(department.getDepartmentName());
-		List<Employee> employees = new ArrayList<>();
+		
 
 		List<EmployeeDTO> employeeDTOs = new ArrayList<>();
 

@@ -16,15 +16,15 @@ import com.pradeep.Employee_Management.util.DepartmentUtil;
 @Service
 @Transactional
 public class DepartmentServiceImpl implements DepartmentService {
-	@Autowired
-	private DepartmentUtil departmentUtil;
+//	@Autowired
+//	private DepartmentUtil departmentUtil;
 
 	@Autowired
 	private DepartmentRepository departmentRepo;
 
 	@Override
 	public Long createDepartment(DepartmentDTO dto) throws EmployeeException {
-		Department department = departmentUtil.toEntity(dto);
+		Department department = DepartmentUtil.toEntity(dto);
 		departmentRepo.save(department);
 
 		return department.getDepartmentId();
@@ -39,7 +39,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		Department department = departmentRepo.findById(id)
 				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
 
-		return departmentUtil.toDTO(department);
+		return DepartmentUtil.toDTO(department);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		List<DepartmentDTO> departmentDTOs = new ArrayList<>();
 
 		for (Department department : departments) {
-			departmentDTOs.add(departmentUtil.toDTO(department));
+			departmentDTOs.add(DepartmentUtil.toDTO(department));
 		}
 
 		return departmentDTOs;
@@ -69,7 +69,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 		Department updatedDepartment = departmentRepo.save(department);
 
-		return departmentUtil.toDTO(updatedDepartment);
+		return DepartmentUtil.toDTO(updatedDepartment);
 	}
 
 	@Override

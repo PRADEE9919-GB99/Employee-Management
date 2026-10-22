@@ -58,7 +58,7 @@ public class ProjectsController {
 	public ResponseEntity<String> updateProject(@PathVariable Long projectid, @RequestBody ProjectsDTO dto)
 			throws EmployeeException {
 
-		ProjectsDTO updatedProject = projectService.updateProject(projectid, dto);
+		projectService.updateProject(projectid, dto);
 		String message = environment.getProperty("PROJECTS.API.UPDATE_SUCCESS");
 		return new ResponseEntity<>(message, HttpStatus.CREATED);
 	}

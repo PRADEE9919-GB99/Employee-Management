@@ -1,6 +1,5 @@
 package com.pradeep.Employee_Management.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.pradeep.Employee_Management.dto.AddressDTO;
@@ -13,9 +12,6 @@ import com.pradeep.Employee_Management.exception.EmployeeException;
 
 @Component
 public class ProfileUtil {
-	@Autowired
-	private AddressUtil addressUtil;
-
 	public static Profile toEntity(ProfileDTO dto) throws EmployeeException {
 		return toEntity(dto, null, null);
 	}

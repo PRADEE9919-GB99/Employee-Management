@@ -20,7 +20,7 @@ import com.pradeep.Employee_Management.util.ManagerUtil;
 @Transactional
 public class ManagerServiceImpl implements ManagerService {
 	private ManagerRepository managerRepo;
-	private ManagerUtil managerUtil;
+//	private ManagerUtil managerUtil;
 	private EmployeeRepository employeeRepo;
 	private TeamsRepository teamsRepo;
 
@@ -28,7 +28,7 @@ public class ManagerServiceImpl implements ManagerService {
 			TeamsRepository teamsRepo) {
 		super();
 		this.managerRepo = managerRepo;
-		this.managerUtil = managerUtil;
+//		this.managerUtil = managerUtil;
 		this.employeeRepo = employeeRepo;
 		this.teamsRepo = teamsRepo;
 	}

@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeRepository employeeRepo;
 	private DepartmentRepository departmentRepo;
 	private ManagerRepository managerRepo;
-	private EmployeeUtil employeeUtil;
+//	private EmployeeUtil employeeUtil;
 	private TeamsRepository teamsRepo;
 
 	public EmployeeServiceImpl(EmployeeRepository employeeRepo, DepartmentRepository departmentRepo,
@@ -34,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		this.employeeRepo = employeeRepo;
 		this.departmentRepo = departmentRepo;
 		this.managerRepo = managerRepo;
-		this.employeeUtil = employeeUtil;
+//		this.employeeUtil = employeeUtil;
 		this.teamsRepo = teamsRepo;
 	}
 
@@ -60,7 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee employee = employeeRepo.findById(id)
 				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
 
-		return employeeUtil.toDTO(employee);
+		return EmployeeUtil.toDTO(employee);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<EmployeeDTO> employeesDTO = new ArrayList<>();
 		for (Employee employee : employees) {
 			EmployeeDTO edto = new EmployeeDTO();
-			edto = employeeUtil.toDTO(employee);
+			edto = EmployeeUtil.toDTO(employee);
 			employeesDTO.add(edto);
 		}
 
@@ -98,7 +98,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Employee updatedEmployee = employeeRepo.save(employee);
 
-		return employeeUtil.toDTO(updatedEmployee);
+		return EmployeeUtil.toDTO(updatedEmployee);
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<EmployeeDTO> employeesDTO = new ArrayList<>();
 		for (Employee employee : employees) {
 			EmployeeDTO edto = new EmployeeDTO();
-			edto = employeeUtil.toDTO(employee);
+			edto = EmployeeUtil.toDTO(employee);
 			employeesDTO.add(edto);
 		}
 
@@ -137,7 +137,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<EmployeeDTO> employeesDTO = new ArrayList<>();
 		for (Employee employee : employees) {
 			EmployeeDTO edto = new EmployeeDTO();
-			edto = employeeUtil.toDTO(employee);
+			edto = EmployeeUtil.toDTO(employee);
 			employeesDTO.add(edto);
 		}
 

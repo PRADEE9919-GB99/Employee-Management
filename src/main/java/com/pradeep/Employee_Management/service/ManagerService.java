@@ -2,7 +2,6 @@ package com.pradeep.Employee_Management.service;
 
 import java.util.List;
 
-import com.pradeep.Employee_Management.dto.EmployeeDTO;
 import com.pradeep.Employee_Management.dto.ManagerDTO;
 import com.pradeep.Employee_Management.exception.EmployeeException;
 

@@ -58,7 +58,7 @@ public class ProfileController {
 	public ResponseEntity<String> updateProfile(@PathVariable Integer profileId, @RequestBody ProfileDTO dto)
 			throws EmployeeException {
 
-		ProfileDTO profile = profileService.updateProfile(profileId, dto);
+		profileService.updateProfile(profileId, dto);
 		String message = environment.getProperty("PROFILE.API.UPDATE_SUCCESS");
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
