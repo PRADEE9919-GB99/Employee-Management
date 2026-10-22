@@ -1,5 +1,7 @@
 package com.pradeep.Employee_Management.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +30,31 @@ public class TeamsServiceImpl implements TeamsService {
 		teams = TeamsUtil.toEntity(dto);
 		teamsRepo.save(teams);
 		return teams.getTeamsId();
+	}
+
+	@Override
+	public TeamsDTO getTeamsById(Integer teamsId) throws EmployeeException {
+		Teams teams = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("TEAMS.NOT_FOUND"));
+
+		return TeamsUtil.toDTO(teams);
+	}
+
+	@Override
+	public List<TeamsDTO> getAllTeams() throws EmployeeException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateTeams(Integer teamsId, TeamsDTO dto) throws EmployeeException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void deleteTeams(Integer teamsId) throws EmployeeException {
+		// TODO Auto-generated method stub
+
 	}
 
 }
