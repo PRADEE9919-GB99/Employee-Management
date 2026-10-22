@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,5 +63,13 @@ public class TeamsController {
 		teamsService.updateTeams(teamsId, dto);
 
 		return ResponseEntity.ok("Team updated successfully with ID: " + teamsId);
+	}
+
+	@DeleteMapping("/{teamsId}")
+	public ResponseEntity<String> deleteTeams(@PathVariable Integer teamsId) throws EmployeeException {
+
+		teamsService.deleteTeams(teamsId);
+
+		return ResponseEntity.ok("Team deleted successfully with ID: " + teamsId);
 	}
 }

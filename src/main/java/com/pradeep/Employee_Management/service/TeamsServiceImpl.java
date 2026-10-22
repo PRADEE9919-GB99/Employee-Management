@@ -91,6 +91,9 @@ public class TeamsServiceImpl implements TeamsService {
 	public void deleteTeams(Integer teamsId) throws EmployeeException {
 		// TODO Auto-generated method stub
 
+		Teams teams = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("TEAMS.NOT_FOUND"));
+
+		teamsRepo.delete(teams);
 	}
 
 }
