@@ -42,7 +42,13 @@ public class TeamsServiceImpl implements TeamsService {
 	@Override
 	public List<TeamsDTO> getAllTeams() throws EmployeeException {
 		// TODO Auto-generated method stub
-		return null;
+		List<TeamsDTO> teamsList = new java.util.ArrayList<>();
+
+		for (Teams teams : teamsRepo.findAll()) {
+			teamsList.add(TeamsUtil.toDTO(teams));
+		}
+
+		return teamsList;
 	}
 
 	@Override

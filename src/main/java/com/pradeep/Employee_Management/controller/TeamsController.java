@@ -1,5 +1,7 @@
 package com.pradeep.Employee_Management.controller;
 
+import java.util.List;
+
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +43,13 @@ public class TeamsController {
 		TeamsDTO dto = teamsService.getTeamsById(teamsId);
 
 		return ResponseEntity.ok(dto);
+	}
+
+	@GetMapping
+	public ResponseEntity<List<TeamsDTO>> getAllTeams() throws EmployeeException {
+
+		List<TeamsDTO> teams = teamsService.getAllTeams();
+
+		return ResponseEntity.ok(teams);
 	}
 }
