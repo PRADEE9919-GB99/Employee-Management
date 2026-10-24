@@ -40,18 +40,18 @@ public class TeamsServiceImpl implements TeamsService {
 	public Integer createTeams(TeamsDTO dto) throws EmployeeException {
 		// TODO Auto-generated method stub
 		if (dto.getManagerResponseDTO() == null || dto.getManagerResponseDTO().getManagerId() == null) {
-			throw new EmployeeException("MANAGER.NOT_FOUND");
+			throw new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND");
 		}
 
 		if (dto.getDepartment() == null || dto.getDepartment().getDepartmentId() == null) {
-			throw new EmployeeException("DEPARTMENT.NOT_FOUND");
+			throw new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND");
 		}
 
 		Manager manager = managerRepo.findById(dto.getManagerResponseDTO().getManagerId())
-				.orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 
 		Department department = departmentRepo.findById(dto.getDepartment().getDepartmentId())
-				.orElseThrow(() -> new EmployeeException("DEPARTMENT.NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
 
 		Teams team = new Teams();
 		team.setTeamName(dto.getTeamName());
@@ -63,7 +63,7 @@ public class TeamsServiceImpl implements TeamsService {
 
 	@Override
 	public TeamsDTO getTeamsById(Integer teamsId) throws EmployeeException {
-		Teams teams = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("TEAMS.NOT_FOUND"));
+		Teams teams = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("TEAMS.SERVICE_NOT_FOUND"));
 
 		return TeamsUtil.toDTO(teams);
 	}
@@ -84,14 +84,15 @@ public class TeamsServiceImpl implements TeamsService {
 	public void updateTeams(Integer teamsId, TeamsDTO dto) throws EmployeeException {
 		// TODO Auto-generated method stub
 
-		Teams existingTeams = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("TEAMS.NOT_FOUND"));
+		Teams existingTeams = teamsRepo.findById(teamsId)
+				.orElseThrow(() -> new EmployeeException("TEAMS.SERVICE_NOT_FOUND"));
 
 		existingTeams.setTeamName(dto.getTeamName());
 
 		if (dto.getDepartment() != null && dto.getDepartment().getDepartmentId() != null) {
 
 			Department department = departmentRepo.findById(dto.getDepartment().getDepartmentId())
-					.orElseThrow(() -> new EmployeeException("DEPARTMENT.NOT_FOUND"));
+					.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
 
 			existingTeams.setDepartment(department);
 		}
@@ -99,7 +100,7 @@ public class TeamsServiceImpl implements TeamsService {
 		if (dto.getManagerResponseDTO() != null && dto.getManagerResponseDTO().getManagerId() != null) {
 
 			Manager manager = managerRepo.findById(dto.getManagerResponseDTO().getManagerId())
-					.orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+					.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 
 			existingTeams.setManager(manager);
 		}
@@ -111,7 +112,7 @@ public class TeamsServiceImpl implements TeamsService {
 	public void deleteTeams(Integer teamsId) throws EmployeeException {
 		// TODO Auto-generated method stub
 
-		Teams teams = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("TEAMS.NOT_FOUND"));
+		Teams teams = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("TEAMS.SERVICE_NOT_FOUND"));
 
 		teamsRepo.delete(teams);
 	}
@@ -119,10 +120,10 @@ public class TeamsServiceImpl implements TeamsService {
 	@Override
 	public void asssignManager(Integer teamsId, Integer managerId) throws EmployeeException {
 		// TODO Auto-generated method stub
-		Teams team = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("SERVICE.TEAMS_NOT_FOUND"));
+		Teams team = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("TEAMS.SERVICE_NOT_FOUND"));
 
 		Manager manager = managerRepo.findById(managerId)
-				.orElseThrow(() -> new EmployeeException("SERVICE.MANAGER_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 
 		team.setManager(manager);
 
@@ -132,10 +133,10 @@ public class TeamsServiceImpl implements TeamsService {
 	@Override
 	public void asssignDepartment(Integer teamsId, Long departmentId) throws EmployeeException {
 		// TODO Auto-generated method stub
-		Teams team = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("SERVICE.TEAMS_NOT_FOUND"));
+		Teams team = teamsRepo.findById(teamsId).orElseThrow(() -> new EmployeeException("TEAMS.SERVICE_NOT_FOUND"));
 
 		Department department = departmentRepo.findById(departmentId)
-				.orElseThrow(() -> new EmployeeException("SERVICE.DEPARTMENT_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
 
 		team.setDepartment(department);
 
@@ -151,7 +152,7 @@ public class TeamsServiceImpl implements TeamsService {
 	@Override
 	public void assignEmployeeToTeam(Integer teamId, Integer employeeId) throws EmployeeException {
 		// TODO Auto-generated method stub
-		Teams team = teamsRepo.findById(teamId).orElseThrow(() -> new EmployeeException("SERVICE.TEAMS_NOT_FOUND"));
+		Teams team = teamsRepo.findById(teamId).orElseThrow(() -> new EmployeeException("TEAMS.SERVICE_NOT_FOUND"));
 
 		Employee employee = employeeRepo.findById(employeeId)
 				.orElseThrow(() -> new EmployeeException("SERVICE.EMPLOYEE_NOT_FOUND"));

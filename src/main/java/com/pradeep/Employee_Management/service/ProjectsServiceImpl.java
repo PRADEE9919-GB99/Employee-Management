@@ -40,13 +40,13 @@ public class ProjectsServiceImpl implements ProjectsService {
 		if (dto.getEmployee() != null && dto.getEmployee().getEmployeeId() != null) {
 
 			employee = employeeRepo.findById(dto.getEmployee().getEmployeeId())
-					.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
+					.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
 		}
 
 		if (dto.getManager() != null && dto.getManager().getManagerId() != null) {
 
 			manager = managerRepo.findById(dto.getManager().getManagerId())
-					.orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+					.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 		}
 
 		Projects project = ProjectsUtil.toEntity(dto, employee, manager);
@@ -92,7 +92,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 		if (dto.getEmployee() != null && dto.getEmployee().getEmployeeId() != null) {
 
 			Employee employee = employeeRepo.findById(dto.getEmployee().getEmployeeId())
-					.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
+					.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
 
 			existingProject.setEmployee(employee);
 		}
@@ -100,7 +100,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 		if (dto.getManager() != null && dto.getManager().getManagerId() != null) {
 
 			Manager manager = managerRepo.findById(dto.getManager().getManagerId())
-					.orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+					.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 
 			existingProject.setManager(manager);
 		}
@@ -124,7 +124,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 	public List<ProjectsDTO> getProjectsByEmployee(Integer employeeId) throws EmployeeException {
 		// TODO Auto-generated method stub
 		if (!employeeRepo.existsById(employeeId)) {
-			throw new EmployeeException("EMPLOYEE.NOT_FOUND");
+			throw new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND");
 		}
 
 		List<Projects> projects = projectsRepo.findByEmployee_EmployeeId(employeeId);
@@ -142,7 +142,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 	public List<ProjectsDTO> getProjectsByManager(Integer managerId) throws EmployeeException {
 		// TODO Auto-generated method stub
 		if (!managerRepo.existsById(managerId)) {
-			throw new EmployeeException("MANAGER.NOT_FOUND");
+			throw new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND");
 		}
 
 		List<Projects> projects = projectsRepo.findByManager_ManagerId(managerId);
@@ -162,7 +162,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 		// TODO Auto-generated method stub
 		Projects project = projectsRepo.findById(id).orElseThrow(() -> new EmployeeException("PROJECT.NOT_FOUND"));
 		Employee employee = employeeRepo.findById(employeeId)
-				.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
 		
 		project.setEmployee(employee);
 	}
@@ -171,7 +171,7 @@ public class ProjectsServiceImpl implements ProjectsService {
 	public void assignManager(Long id, Integer managerId) throws EmployeeException {
 		// TODO Auto-generated method stub
 		Projects project = projectsRepo.findById(id).orElseThrow(() -> new EmployeeException("PROJECT.NOT_FOUND"));
-		Manager manager = managerRepo.findById(managerId).orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+		Manager manager = managerRepo.findById(managerId).orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 		project.setManager(manager);
 		
 	}

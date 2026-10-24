@@ -1,6 +1,6 @@
+
 package com.pradeep.Employee_Management.exception;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -9,6 +9,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import jakarta.validation.ConstraintViolationException;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -16,9 +18,11 @@ public class GlobalExceptionHandler {
 	private Environment environment;
 
 	@ExceptionHandler(EmployeeException.class)
-	public ResponseEntity<ErrorInfo> handleStudentException(EmployeeException ex) {
+	public ResponseEntity<ErrorInfo> handleEmployeeException(EmployeeException ex) {
 
-		ErrorInfo error = new ErrorInfo(HttpStatus.NOT_FOUND.value(), environment.getProperty(ex.getMessage()));
+		String errorInfo = environment.getProperty(ex.getMessage(), ex.getMessage());
+
+		ErrorInfo error = new ErrorInfo(HttpStatus.NOT_FOUND.value(), errorInfo);
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
@@ -28,15 +32,19 @@ public class GlobalExceptionHandler {
 
 		String errorInfo;
 
-		if (ex instanceof MethodArgumentNotValidException) {
-			MethodArgumentNotValidException validationEx = (MethodArgumentNotValidException) ex;
+		if (ex instanceof MethodArgumentNotValidException validationEx) {
 
 			errorInfo = validationEx.getBindingResult().getFieldErrors().stream()
-					.map(error -> error.getDefaultMessage()).findFirst()
-					.orElse(environment.getProperty(ex.getMessage()));
+					.map(fieldError -> fieldError.getDefaultMessage()).findFirst()
+					.orElseGet(() -> environment.getProperty("VALIDATION.ERROR"));
+
+		} else if (ex instanceof ConstraintViolationException validationEx) {
+
+			errorInfo = validationEx.getConstraintViolations().stream().map(violation -> violation.getMessage())
+					.findFirst().orElseGet(() -> environment.getProperty("VALIDATION.ERROR"));
 
 		} else {
-			errorInfo = environment.getProperty(ex.getMessage());
+			errorInfo = environment.getProperty("VALIDATION.ERROR");
 		}
 
 		ErrorInfo error = new ErrorInfo(HttpStatus.BAD_REQUEST.value(), errorInfo);
@@ -47,10 +55,10 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorInfo> handleGeneralException(Exception ex) {
 
-		ErrorInfo error = new ErrorInfo(HttpStatus.INTERNAL_SERVER_ERROR.value(),
-				environment.getProperty(ex.getMessage()));
+		String errorInfo = environment.getProperty("GENERAL.ERROR");
+
+		ErrorInfo error = new ErrorInfo(HttpStatus.INTERNAL_SERVER_ERROR.value(), errorInfo);
 
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
 	}
-
 }

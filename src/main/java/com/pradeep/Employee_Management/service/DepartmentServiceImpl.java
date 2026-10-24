@@ -127,10 +127,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public void assignTeamToDepartment(Long departmentId, Integer teamId) throws EmployeeException {
 		// TODO Auto-generated method stub
 		Department department = departmentRepo.findById(departmentId)
-				.orElseThrow(() -> new EmployeeException("SERVICE.DEPARTMENT_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
 		List<Teams> teams = new ArrayList<>();
 
-		Teams team = teamsRepo.findById(teamId).orElseThrow(() -> new EmployeeException("SERVICE.TEAMS_NOT_FOUND"));
+		Teams team = teamsRepo.findById(teamId).orElseThrow(() -> new EmployeeException("TEAMS.SERVICE_NOT_FOUND"));
 
 		team.setDepartment(department);
 		teamsRepo.save(team);

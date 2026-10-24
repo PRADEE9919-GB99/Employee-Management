@@ -1,3 +1,4 @@
+
 package com.pradeep.Employee_Management.controller;
 
 import java.util.List;
@@ -5,6 +6,7 @@ import java.util.List;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +20,12 @@ import com.pradeep.Employee_Management.dto.TeamsDTO;
 import com.pradeep.Employee_Management.exception.EmployeeException;
 import com.pradeep.Employee_Management.service.TeamsService;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
+
 @RestController
 @RequestMapping("/teams")
+@Validated
 public class TeamsController {
 
 	private TeamsService teamsService;
@@ -32,7 +38,7 @@ public class TeamsController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> createTeams(@RequestBody TeamsDTO dto) throws EmployeeException {
+	public ResponseEntity<String> createTeams(@Valid @RequestBody TeamsDTO dto) throws EmployeeException {
 
 		Integer teamsId = teamsService.createTeams(dto);
 		String message = environment.getProperty("TEAMS.API.SUCCESS");
@@ -41,7 +47,8 @@ public class TeamsController {
 	}
 
 	@GetMapping("/{teamsId}")
-	public ResponseEntity<TeamsDTO> getTeamsById(@PathVariable Integer teamsId) throws EmployeeException {
+	public ResponseEntity<TeamsDTO> getTeamsById(
+			@PathVariable @Positive(message = "{teams.id.positive}") Integer teamsId) throws EmployeeException {
 
 		TeamsDTO dto = teamsService.getTeamsById(teamsId);
 
@@ -57,8 +64,8 @@ public class TeamsController {
 	}
 
 	@PutMapping("/{teamsId}")
-	public ResponseEntity<String> updateTeams(@PathVariable Integer teamsId, @RequestBody TeamsDTO dto)
-			throws EmployeeException {
+	public ResponseEntity<String> updateTeams(@PathVariable @Positive(message = "{teams.id.positive}") Integer teamsId,
+			@Valid @RequestBody TeamsDTO dto) throws EmployeeException {
 
 		teamsService.updateTeams(teamsId, dto);
 
@@ -66,7 +73,8 @@ public class TeamsController {
 	}
 
 	@DeleteMapping("/{teamsId}")
-	public ResponseEntity<String> deleteTeams(@PathVariable Integer teamsId) throws EmployeeException {
+	public ResponseEntity<String> deleteTeams(@PathVariable @Positive(message = "{teams.id.positive}") Integer teamsId)
+			throws EmployeeException {
 
 		teamsService.deleteTeams(teamsId);
 
@@ -74,29 +82,38 @@ public class TeamsController {
 	}
 
 	@PutMapping("/{teamsId}/manager/{managerId}")
-	public ResponseEntity<String> assignManager(@PathVariable Integer teamsId, @PathVariable Integer managerId)
-			throws EmployeeException {
+	public ResponseEntity<String> assignManager(
+			@PathVariable @Positive(message = "{teams.id.positive}") Integer teamsId,
+			@PathVariable @Positive(message = "{manager.id.positive}") Integer managerId) throws EmployeeException {
 
 		teamsService.asssignManager(teamsId, managerId);
+
 		String message = environment.getProperty("TEAMS.API.ASSIGN_MANAGER_SUCCESS");
+
 		return ResponseEntity.ok(message);
 	}
 
 	@PutMapping("/{teamsId}/department/{departmentId}")
-	public ResponseEntity<String> assignDepartment(@PathVariable Integer teamsId, @PathVariable Long departmentId)
-			throws EmployeeException {
+	public ResponseEntity<String> assignDepartment(
+			@PathVariable @Positive(message = "{teams.id.positive}") Integer teamsId,
+			@PathVariable @Positive(message = "{department.id.positive}") Long departmentId) throws EmployeeException {
 
 		teamsService.asssignDepartment(teamsId, departmentId);
+
 		String message = environment.getProperty("TEAMS.API.ASSIGN_DEPARTMENT_SUCCESS");
+
 		return ResponseEntity.ok(message);
 	}
 
 	@PutMapping("/{teamId}/employees/{employeeId}")
-	public ResponseEntity<String> assignEmployeeToTeam(@PathVariable Integer teamId, @PathVariable Integer employeeId)
-			throws EmployeeException {
+	public ResponseEntity<String> assignEmployeeToTeam(
+			@PathVariable @Positive(message = "{teams.id.positive}") Integer teamId,
+			@PathVariable @Positive(message = "{employee.id.positive}") Integer employeeId) throws EmployeeException {
 
 		teamsService.assignEmployeeToTeam(teamId, employeeId);
 
-		return ResponseEntity.ok("TEAMS.API.ASSIGN_EMPLOYEE_SUCCESS");
+		String message = environment.getProperty("TEAMS.API.ASSIGN_EMPLOYEE_SUCCESS");
+
+		return ResponseEntity.ok(message);
 	}
 }

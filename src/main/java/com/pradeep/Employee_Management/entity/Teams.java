@@ -27,8 +27,8 @@ public class Teams {
 	private String teamName;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "manager_id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "manager_id", nullable = true)
 	private Manager manager;
 
 	@OneToMany(mappedBy = "team")

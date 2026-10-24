@@ -43,7 +43,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Transactional(readOnly = true)
 	public ProfileDTO getProfileById(Integer id) throws EmployeeException {
 
-		Profile profile = profileRepo.findById(id).orElseThrow(() -> new EmployeeException("PROFILE.NOT_FOUND"));
+		Profile profile = profileRepo.findById(id).orElseThrow(() -> new EmployeeException("PROFILE.SERVICE_PROFILE_NOT_FOUND"));
 
 		return ProfileUtil.toDTO(profile);
 	}
@@ -69,7 +69,7 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 
 		Profile existingProfile = profileRepo.findById(id)
-				.orElseThrow(() -> new EmployeeException("PROFILE.NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("PROFILE.SERVICE_PROFILE_NOT_FOUND"));
 
 		if (dto.getStartDate() != null) {
 			existingProfile.setStartDate(dto.getStartDate());
@@ -95,7 +95,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public void deleteProfile(Integer id) throws EmployeeException {
 
-		Profile profile = profileRepo.findById(id).orElseThrow(() -> new EmployeeException("PROFILE.NOT_FOUND"));
+		Profile profile = profileRepo.findById(id).orElseThrow(() -> new EmployeeException("PROFILE.SERVICE_PROFILE_NOT_FOUND"));
 
 		// Employee owns the profile relationship.
 		// Unlink the profile before deleting it.
@@ -114,12 +114,12 @@ public class ProfileServiceImpl implements ProfileService {
 	public ProfileDTO getProfileByEmployeeId(Integer employeeId) throws EmployeeException {
 
 		Employee employee = employeeRepo.findById(employeeId)
-				.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
 
 		Profile profile = employee.getProfile();
 
 		if (profile == null) {
-			throw new EmployeeException("PROFILE.NOT_FOUND");
+			throw new EmployeeException("PROFILE.SERVICE_PROFILE_NOT_FOUND");
 		}
 
 		return ProfileUtil.toDTO(profile);

@@ -2,11 +2,21 @@ package com.pradeep.Employee_Management.dto;
 
 import com.pradeep.Employee_Management.enums.Status;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class ProjectsDTO {
 	private Long projectId;
+	@NotBlank(message = "{projects.projectName.notBlank}")
+	@Size(min = 2, max = 150, message = "{projects.projectName.size}")
 	private String projectName;
+	@NotNull(message = "{projects.status.notNull}")
 	private Status status;
+	@Valid
 	private EmployeeDTO employee;
+	@Valid
 	private ManagerDTO manager;
 
 	public Long getProjectId() {

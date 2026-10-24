@@ -4,17 +4,33 @@ import java.util.List;
 
 import com.pradeep.Employee_Management.enums.Gender;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class EmployeeDTO {
 	private Integer employeeId;
+	@NotBlank(message = "{employee.employeeName.notBlank}")
+	@Size(min = 2, max = 100, message = "{employee.employeeName.size}")
 	private String employeeName;
+	@NotBlank(message = "{employee.email.notBlank}")
+	@Email(message = "{employee.email.invalid}")
 	private String email;
-
+	@NotNull(message = "{employee.gender.notNull}")
 	private Gender gender;
+	@Valid
 	private TeamsResponseDTO team;
+	@Valid
 	private ProfileDTO profile;
+	@Valid
 	private AddressDTO address;
+	@Valid
 	private List<ProjectResponseDTO> projects;
+	@Valid
 	private ManagerResponseDTO manager;
+	@Valid
 	private DepartmentResponseDTO department;
 
 	public Integer getEmployeeId() {

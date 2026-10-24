@@ -2,11 +2,20 @@ package com.pradeep.Employee_Management.dto;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class TeamsDTO {
 	private Integer teamsId;
+	@NotBlank(message = "{teams.teamName.notBlank}")
+	@Size(min = 2, max = 100, message = "{teams.teamName.size}")
 	private String teamName;
+	@Valid
 	private ManagerResponseDTO manager;
+	@Valid
 	private DepartmentResponseDTO department;
+    @Valid
 	private List<EmployeeDTO> employees;
 
 	public Integer getTeamsId() {

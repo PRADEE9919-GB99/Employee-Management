@@ -41,13 +41,13 @@ public class ManagerServiceImpl implements ManagerService {
 	public Integer createManager(ManagerDTO dto) throws EmployeeException {
 
 		if (dto == null || dto.getEmployee() == null || dto.getEmployee().getEmployeeId() == null) {
-			throw new EmployeeException("EMPLOYEE.NOT_FOUND");
+			throw new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND");
 		}
 
 		Integer employeeId = dto.getEmployee().getEmployeeId();
 
 		Employee employee = employeeRepo.findById(employeeId)
-				.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
 
 		if (managerRepo.existsByEmployee_EmployeeId(employeeId)) {
 			throw new EmployeeException("MANAGER.ALREADY_EXISTS");
@@ -60,7 +60,7 @@ public class ManagerServiceImpl implements ManagerService {
 				if (teamDTO != null && teamDTO.getTeamsId() != null) {
 
 					Teams team = teamsRepo.findById(teamDTO.getTeamsId())
-							.orElseThrow(() -> new EmployeeException("TEAM.NOT_FOUND"));
+							.orElseThrow(() -> new EmployeeException("TEAMS.SERVICE_NOT_FOUND"));
 
 					teams.add(team);
 				}
@@ -76,7 +76,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Transactional(readOnly = true)
 	public ManagerDTO getManagerById(Integer id) throws EmployeeException {
 
-		Manager manager = managerRepo.findById(id).orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+		Manager manager = managerRepo.findById(id).orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 
 		return ManagerUtil.toDTO(manager);
 	}
@@ -102,14 +102,14 @@ public class ManagerServiceImpl implements ManagerService {
 		}
 
 		Manager existingManager = managerRepo.findById(id)
-				.orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 
 		if (dto.getEmployee() != null && dto.getEmployee().getEmployeeId() != null) {
 
 			Integer employeeId = dto.getEmployee().getEmployeeId();
 
 			Employee employee = employeeRepo.findById(employeeId)
-					.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
+					.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
 
 			if (managerRepo.existsByEmployee_EmployeeId(employeeId)
 					&& !existingManager.getEmployee().getEmployeeId().equals(employeeId)) {
@@ -127,7 +127,7 @@ public class ManagerServiceImpl implements ManagerService {
 				if (teamDTO != null && teamDTO.getTeamsId() != null) {
 
 					Teams team = teamsRepo.findById(teamDTO.getTeamsId())
-							.orElseThrow(() -> new EmployeeException("TEAM.NOT_FOUND"));
+							.orElseThrow(() -> new EmployeeException("TEAMS.SERVICE_NOT_FOUND"));
 
 					teams.add(team);
 				}
@@ -144,7 +144,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public void deleteManager(Integer id) throws EmployeeException {
 
-		Manager manager = managerRepo.findById(id).orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+		Manager manager = managerRepo.findById(id).orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 
 		// Remove relationships from the owning side where applicable.
 		if (manager.getEmployees() != null) {
@@ -181,10 +181,10 @@ public class ManagerServiceImpl implements ManagerService {
 	public void assignEmployee(Integer id, Integer employeeId) throws EmployeeException {
 
 		Manager manager = managerRepo.findById(id)
-				.orElseThrow(() -> new EmployeeException("SERVICE.MANAGER_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 
 		Employee employee = employeeRepo.findById(employeeId)
-				.orElseThrow(() -> new EmployeeException("SERVICE.EMPLOYEE_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
 
 		employee.setManager(manager);
 
@@ -195,10 +195,10 @@ public class ManagerServiceImpl implements ManagerService {
 	public void assignProjects(Integer id, Integer projectId) throws EmployeeException {
 
 		Manager manager = managerRepo.findById(id)
-				.orElseThrow(() -> new EmployeeException("SERVICE.MANAGER_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
 
 		Projects project = projectsRepo.findById(projectId.longValue())
-				.orElseThrow(() -> new EmployeeException("SERVICE.PROJECT_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("PROJECT.NOT_FOUND"));
 
 		project.setManager(manager);
 
