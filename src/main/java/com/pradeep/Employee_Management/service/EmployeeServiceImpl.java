@@ -7,14 +7,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pradeep.Employee_Management.dto.EmployeeDTO;
+import com.pradeep.Employee_Management.entity.Address;
 import com.pradeep.Employee_Management.entity.Department;
 import com.pradeep.Employee_Management.entity.Employee;
 import com.pradeep.Employee_Management.entity.Manager;
+import com.pradeep.Employee_Management.entity.Profile;
+import com.pradeep.Employee_Management.entity.Projects;
 import com.pradeep.Employee_Management.entity.Teams;
 import com.pradeep.Employee_Management.exception.EmployeeException;
+import com.pradeep.Employee_Management.repository.AddressRepository;
 import com.pradeep.Employee_Management.repository.DepartmentRepository;
 import com.pradeep.Employee_Management.repository.EmployeeRepository;
 import com.pradeep.Employee_Management.repository.ManagerRepository;
+import com.pradeep.Employee_Management.repository.ProfileRepository;
+import com.pradeep.Employee_Management.repository.ProjectsRepository;
 import com.pradeep.Employee_Management.repository.TeamsRepository;
 import com.pradeep.Employee_Management.util.EmployeeUtil;
 
@@ -27,15 +33,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private ManagerRepository managerRepo;
 //	private EmployeeUtil employeeUtil;
 	private TeamsRepository teamsRepo;
+	private ProfileRepository profileRepo;
+	private AddressRepository addressRepo;
+	private ProjectsRepository projectsRepo;
 
 	public EmployeeServiceImpl(EmployeeRepository employeeRepo, DepartmentRepository departmentRepo,
-			ManagerRepository managerRepo, EmployeeUtil employeeUtil, TeamsRepository teamsRepo) {
+			ManagerRepository managerRepo, EmployeeUtil employeeUtil, TeamsRepository teamsRepo,
+			ProjectsRepository projectsRepo, AddressRepository addressRepo, ProfileRepository profileRepo) {
 		super();
 		this.employeeRepo = employeeRepo;
 		this.departmentRepo = departmentRepo;
 		this.managerRepo = managerRepo;
 //		this.employeeUtil = employeeUtil;
 		this.teamsRepo = teamsRepo;
+		this.profileRepo = profileRepo;
+		this.projectsRepo = projectsRepo;
+		this.addressRepo = addressRepo;
 	}
 
 	@Override
@@ -111,22 +124,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeRepo.delete(employee);
 	}
 
-	@Override
-	public List<EmployeeDTO> getEmployeesByDepartment(Long departmentId) throws EmployeeException {
-		// TODO Auto-generated method stub
-		Department department = departmentRepo.findById(departmentId)
-				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
-
-		List<Employee> employees = employeeRepo.findByDepartment(department.getDepartmentId());
-		List<EmployeeDTO> employeesDTO = new ArrayList<>();
-		for (Employee employee : employees) {
-			EmployeeDTO edto = new EmployeeDTO();
-			edto = EmployeeUtil.toDTO(employee);
-			employeesDTO.add(edto);
-		}
-
-		return employeesDTO;
-	}
+//	@Override
+//	public List<EmployeeDTO> getEmployeesByDepartment(Long departmentId) throws EmployeeException {
+//		// TODO Auto-generated method stub
+//		Department department = departmentRepo.findById(departmentId)
+//				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
+//
+//		List<Employee> employees = employeeRepo.findByDepartment(department.getDepartmentId());
+//		List<EmployeeDTO> employeesDTO = new ArrayList<>();
+//		for (Employee employee : employees) {
+//			EmployeeDTO edto = new EmployeeDTO();
+//			edto = EmployeeUtil.toDTO(employee);
+//			employeesDTO.add(edto);
+//		}
+//
+//		return employeesDTO;
+//	}
 
 	@Override
 	public List<EmployeeDTO> getEmployeesByManager(Integer managerId) throws EmployeeException {
@@ -177,67 +190,158 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeRepo.save(employee);
 	}
 
+//	@Override
+//	public void assignDepartment(Integer employeeId, Long departmentId) throws EmployeeException {
+//		// TODO Auto-generated method stub
+//		Employee employee = employeeRepo.findById(employeeId)
+//				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+//
+//		Department department = departmentRepo.findById(departmentId)
+//				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
+//
+//		employee.setDepartment(department);
+//
+//		employeeRepo.save(employee);
+//
+//	}
+
+//	@Override
+//	public void assignManager(Integer employeeId, Integer managerId) throws EmployeeException {
+//		// TODO Auto-generated method stub
+//		Employee employee = employeeRepo.findById(employeeId)
+//				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+//
+//		Manager manager = managerRepo.findById(managerId)
+//				.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
+//
+//		employee.setManager(manager);
+//
+//		employeeRepo.save(employee);
+//
+//	}
+
+//	@Override
+//	public void unAssignTeam(Integer employeeId) throws EmployeeException {
+//		// TODO Auto-generated method stub
+//		Employee employee = employeeRepo.findById(employeeId)
+//				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+//		employee.setTeam(null);
+//		employeeRepo.save(employee);
+//	}
+
+//	@Override
+//	public void unAassignDepartment(Integer employeeId) throws EmployeeException {
+//		// TODO Auto-generated method stub
+//		Employee employee = employeeRepo.findById(employeeId)
+//				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+//		if (employee.getTeam() != null || employee.getManager() != null) {
+//			throw new EmployeeException("EMPLOYEE.SERVICE_UNASSIGN");
+//		}
+//		employee.setDepartment(null);
+//		employeeRepo.save(employee);
+//	}
+
+//	@Override
+//	public void unAassignManager(Integer employeeId) throws EmployeeException {
+//		// TODO Auto-generated method stub
+//		Employee employee = employeeRepo.findById(employeeId)
+//				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+//		if (employee.getTeam() != null) {
+//			throw new EmployeeException("EMPLOYEE.SERVICE_UNASSIGN_TEAM");
+//		}
+//		employee.setManager(null);
+//		employeeRepo.save(employee);
+//	}
+
 	@Override
-	public void assignDepartment(Integer employeeId, Long departmentId) throws EmployeeException {
+	public void assignProfile(Integer employeeId, Integer profileId) throws EmployeeException {
 		// TODO Auto-generated method stub
 		Employee employee = employeeRepo.findById(employeeId)
-				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("SERVICE.EMPLOYEE_NOT_FOUND"));
 
-		Department department = departmentRepo.findById(departmentId)
-				.orElseThrow(() -> new EmployeeException("DEPARTMENT.SERVICE_DEPARTMENT_NOT_FOUND"));
+		Profile profile = profileRepo.findById(profileId)
+				.orElseThrow(() -> new EmployeeException("SERVICE.PROFILE_NOT_FOUND"));
 
-		employee.setDepartment(department);
-
+		employee.setProfile(profile);
 		employeeRepo.save(employee);
-
 	}
 
 	@Override
-	public void assignManager(Integer employeeId, Integer managerId) throws EmployeeException {
+	public void assignAddress(Integer employeeId, Integer addressId) throws EmployeeException {
 		// TODO Auto-generated method stub
 		Employee employee = employeeRepo.findById(employeeId)
-				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("SERVICE.EMPLOYEE_NOT_FOUND"));
+
+		Address address = addressRepo.findById(addressId)
+				.orElseThrow(() -> new EmployeeException("SERVICE.ADDRESS_NOT_FOUND"));
+
+		employee.setAddress(address);
+		employeeRepo.save(employee);
+	}
+
+	@Override
+	public void assignProjects(Integer employeeId, Long projectId) throws EmployeeException {
+		// TODO Auto-generated method stub
+		Employee employee = employeeRepo.findById(employeeId)
+				.orElseThrow(() -> new EmployeeException("SERVICE.EMPLOYEE_NOT_FOUND"));
+
+		Projects project = projectsRepo.findById(projectId.longValue())
+				.orElseThrow(() -> new EmployeeException("SERVICE.PROJECT_NOT_FOUND"));
+
+		project.setEmployee(employee);
+		projectsRepo.save(project);
+	}
+
+	@Override
+	public void assignReportingManager(Integer employeeId, Integer managerId) throws EmployeeException {
+		// TODO Auto-generated method stub
+		Employee employee = employeeRepo.findById(employeeId)
+				.orElseThrow(() -> new EmployeeException("SERVICE.EMPLOYEE_NOT_FOUND"));
 
 		Manager manager = managerRepo.findById(managerId)
-				.orElseThrow(() -> new EmployeeException("MANAGER.SERVICE_MANAGER_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("SERVICE.MANAGER_NOT_FOUND"));
+
+		// Prevent an employee from reporting to themselves.
+		if (manager.getEmployee().getEmployeeId().equals(employeeId)) {
+			throw new EmployeeException("SERVICE.EMPLOYEE_CANNOT_BE_OWN_MANAGER");
+		}
 
 		employee.setManager(manager);
 
 		employeeRepo.save(employee);
-
 	}
 
 	@Override
-	public void unAssignTeam(Integer employeeId) throws EmployeeException {
+	public void removeEmployeeFromTeam(Integer employeeId) throws EmployeeException {
 		// TODO Auto-generated method stub
 		Employee employee = employeeRepo.findById(employeeId)
-				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
+				.orElseThrow(() -> new EmployeeException("SERVICE.EMPLOYEE_NOT_FOUND"));
+
 		employee.setTeam(null);
+
+		employeeRepo.save(employee);
+
+	}
+
+	@Override
+	public void changeEmployeeTeam(Integer employeeId, Integer newTeamId) throws EmployeeException {
+		// TODO Auto-generated method stub
+
+		Employee employee = employeeRepo.findById(employeeId)
+				.orElseThrow(() -> new EmployeeException("SERVICE.EMPLOYEE_NOT_FOUND"));
+
+		Teams newTeam = teamsRepo.findById(newTeamId)
+				.orElseThrow(() -> new EmployeeException("SERVICE.TEAMS_NOT_FOUND"));
+
+		employee.setTeam(newTeam);
+
 		employeeRepo.save(employee);
 	}
 
 	@Override
-	public void unAassignDepartment(Integer employeeId) throws EmployeeException {
+	public void changeReportingManager(Integer employeeId, Integer newManagerId) throws EmployeeException {
 		// TODO Auto-generated method stub
-		Employee employee = employeeRepo.findById(employeeId)
-				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
-		if (employee.getTeam() != null || employee.getManager() != null) {
-			throw new EmployeeException("EMPLOYEE.SERVICE_UNASSIGN");
-		}
-		employee.setDepartment(null);
-		employeeRepo.save(employee);
-	}
 
-	@Override
-	public void unAassignManager(Integer employeeId) throws EmployeeException {
-		// TODO Auto-generated method stub
-		Employee employee = employeeRepo.findById(employeeId)
-				.orElseThrow(() -> new EmployeeException("EMPLOYEE.SERVICE_EMPLOYEE_NOT_FOUND"));
-		if (employee.getTeam() != null) {
-			throw new EmployeeException("EMPLOYEE.SERVICE_UNASSIGN_TEAM");
-		}
-		employee.setManager(null);
-		employeeRepo.save(employee);
 	}
 
 }

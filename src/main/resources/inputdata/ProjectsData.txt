@@ -1,0 +1,83 @@
+#POST
+http://localhost:8080/project
+
+{
+  "projectName": "Employee Management System",
+  "status": "IN_PROGRESS",
+  "employee": {
+    "employeeId": 2
+  },
+  "manager": {
+    "managerId": 1
+  }
+}
+
+{
+  "projectName": "Payroll Automation",
+  "status": "PLANNED",
+  "employee": {
+    "employeeId": 3
+  },
+  "manager": {
+    "managerId": 1
+  }
+}
+
+{
+  "projectName": "Customer Portal",
+  "status": "IN_PROGRESS",
+  "employee": {
+    "employeeId": 4
+  },
+  "manager": {
+    "managerId": 1
+  }
+}
+
+{
+  "projectName": "Inventory Management",
+  "status": "COMPLETED",
+  "employee": {
+    "employeeId": 5
+  },
+  "manager": {
+    "managerId": 1
+  }
+}
+
+{
+  "projectName": "Reporting Dashboard",
+  "status": "PLANNED",
+  "employee": {
+    "employeeId": 2
+  },
+  "manager": {
+    "managerId": 1
+  }
+}
+
+#GET
+http://localhost:8080/project/1
+http://localhost:8080/project
+
+#UPDATE
+http://localhost:8080/project/1
+{
+  "projectName": "Employee Management System V2",
+  "status": "COMPLETED",
+  "employee": {
+    "employeeId": 2
+  },
+  "manager": {
+    "managerId": 1
+  }
+}
+
+#DELETE
+http://localhost:8080/project/1
+
+#GET BY EMP
+http://localhost:8080/project/employee/2
+
+#GET BY MNGR
+http://localhost:8080/project/manager/1

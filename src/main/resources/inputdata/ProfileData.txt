@@ -1,0 +1,41 @@
+#POST 
+http://localhost:8080/profile
+
+{
+  "startDate": "2026-01-05",
+  "endDate": "2027-01-05",
+  "designation": "QA Analyst",
+  "employeePhoneNo": "9876543210",
+  "address": {
+    "addressId": 1
+  },
+  "employee": {
+    "employeeId": 1
+  }
+}
+
+#GET
+http://localhost:8080/profile/1
+http://localhost:8080/profile
+
+#UPDATE
+http://localhost:8080/profile/1
+
+{
+  "startDate": "2026-01-05",
+  "endDate": "2028-01-05",
+  "designation": "Senior QA Analyst",
+  "employeePhoneNo": "9876543212",
+  "address": {
+    "addressId": 1
+  },
+  "employee": {
+    "employeeId": 1
+  }
+}
+
+#DELETE
+http://localhost:8080/profile/1
+
+#GET BY EMP
+http://localhost:8080/profile/employee/1

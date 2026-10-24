@@ -1,0 +1,39 @@
+#POST
+http://localhost:8080/address
+
+{
+  "city": "Mysore",
+  "state": "Karnataka",
+  "country": "India"
+}
+{
+  "city": "Mangalore",
+  "state": "Karnataka",
+  "country": "India"
+}
+{
+  "city": "Hubli",
+  "state": "Karnataka",
+  "country": "India"
+}
+{
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "country": "India"
+}
+{
+  "city": "Belagavi",
+  "state": "Karnataka",
+  "country": "India"
+}
+
+#GET
+http://localhost:8080/address/1
+
+http://localhost:8080/address
+
+#PUT
+http://localhost:8080/address/1
+
+#DELETE
+http://localhost:8080/address/1

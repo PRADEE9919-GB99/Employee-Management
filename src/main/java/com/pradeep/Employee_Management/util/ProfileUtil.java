@@ -1,22 +1,17 @@
+
 package com.pradeep.Employee_Management.util;
 
 import org.springframework.stereotype.Component;
 
-import com.pradeep.Employee_Management.dto.AddressDTO;
-import com.pradeep.Employee_Management.dto.EmployeeDTO;
 import com.pradeep.Employee_Management.dto.ProfileDTO;
-import com.pradeep.Employee_Management.entity.Address;
-import com.pradeep.Employee_Management.entity.Employee;
 import com.pradeep.Employee_Management.entity.Profile;
 import com.pradeep.Employee_Management.exception.EmployeeException;
 
 @Component
 public class ProfileUtil {
-	public static Profile toEntity(ProfileDTO dto) throws EmployeeException {
-		return toEntity(dto, null, null);
-	}
 
-	public static Profile toEntity(ProfileDTO dto, Address address, Employee employee) throws EmployeeException {
+	// Convert ProfileDTO to Profile entity
+	public static Profile toEntity(ProfileDTO dto) throws EmployeeException {
 
 		if (dto == null) {
 			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
@@ -30,12 +25,10 @@ public class ProfileUtil {
 		profile.setDesignation(dto.getDesignation());
 		profile.setEmployeePhoneNo(dto.getEmployeePhoneNo());
 
-		profile.setAddress(address);
-		profile.setEmployee(employee);
-
 		return profile;
 	}
 
+	// Convert Profile entity to ProfileDTO
 	public static ProfileDTO toDTO(Profile profile) throws EmployeeException {
 
 		if (profile == null) {
@@ -50,21 +43,6 @@ public class ProfileUtil {
 		dto.setDesignation(profile.getDesignation());
 		dto.setEmployeePhoneNo(profile.getEmployeePhoneNo());
 
-		// Map Address
-		if (profile.getAddress() != null) {
-			AddressDTO addressDTO = AddressUtil.toDTO(profile.getAddress());
-
-			dto.setAddress(addressDTO);
-		}
-
-		// Map Employee
-		if (profile.getEmployee() != null) {
-			EmployeeDTO employeeDTO = EmployeeUtil.toDTO(profile.getEmployee());
-
-			dto.setEmployee(employeeDTO);
-		}
-
 		return dto;
 	}
-	
 }

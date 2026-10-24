@@ -32,7 +32,7 @@ public class TeamsController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> createTeams(TeamsDTO dto) throws EmployeeException {
+	public ResponseEntity<String> createTeams(@RequestBody TeamsDTO dto) throws EmployeeException {
 
 		Integer teamsId = teamsService.createTeams(dto);
 		String message = environment.getProperty("TEAMS.API.SUCCESS");
@@ -71,5 +71,32 @@ public class TeamsController {
 		teamsService.deleteTeams(teamsId);
 
 		return ResponseEntity.ok("Team deleted successfully with ID: " + teamsId);
+	}
+
+	@PutMapping("/{teamsId}/manager/{managerId}")
+	public ResponseEntity<String> assignManager(@PathVariable Integer teamsId, @PathVariable Integer managerId)
+			throws EmployeeException {
+
+		teamsService.asssignManager(teamsId, managerId);
+		String message = environment.getProperty("TEAMS.API.ASSIGN_MANAGER_SUCCESS");
+		return ResponseEntity.ok(message);
+	}
+
+	@PutMapping("/{teamsId}/department/{departmentId}")
+	public ResponseEntity<String> assignDepartment(@PathVariable Integer teamsId, @PathVariable Long departmentId)
+			throws EmployeeException {
+
+		teamsService.asssignDepartment(teamsId, departmentId);
+		String message = environment.getProperty("TEAMS.API.ASSIGN_DEPARTMENT_SUCCESS");
+		return ResponseEntity.ok(message);
+	}
+
+	@PutMapping("/{teamId}/employees/{employeeId}")
+	public ResponseEntity<String> assignEmployeeToTeam(@PathVariable Integer teamId, @PathVariable Integer employeeId)
+			throws EmployeeException {
+
+		teamsService.assignEmployeeToTeam(teamId, employeeId);
+
+		return ResponseEntity.ok("TEAMS.API.ASSIGN_EMPLOYEE_SUCCESS");
 	}
 }

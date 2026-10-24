@@ -1,0 +1,67 @@
+#POST
+http://localhost:8080/employee
+
+{
+  "employeeName": "Praveen Kumar",
+  "email": "praveen.kumar@example.com",
+  "gender": "MALE"
+}
+{
+  "employeeName": "Priya Sharma",
+  "email": "priya.sharma02@example.com",
+  "gender": "FEMALE"
+}
+
+{
+  "employeeName": "Rahul Verma",
+  "email": "rahul.verma03@example.com",
+  "gender": "MALE"
+}
+
+{
+  "employeeName": "Sneha Rao",
+  "email": "sneha.rao04@example.com",
+  "gender": "FEMALE"
+}
+
+{
+  "employeeName": "Kiran Patil",
+  "email": "kiran.patil05@example.com",
+  "gender": "MALE"
+}
+
+#GET
+http://localhost:8080/employee
+http://localhost:8080/employee/1
+
+#UPDATE
+http://localhost:8080/employee/3
+
+{
+  "employeeName": "Arjun Kumar Updated",
+  "email": "arjun.updated01@example.com",
+  "gender": "MALE"
+}
+
+#DELETE
+http://localhost:8080/employee/{employeeId}
+
+#GET BY DEPT
+http://localhost:8080/employee/department/{departmentId}
+
+#GET BY MNGR
+http://localhost:8080/employee/manager/{managerId}
+
+#ASSIGN TEAM
+http://localhost:8080/employee/teams/{employeeId}/{teamId}
+
+#ASSIGN DEPT
+http://localhost:8080/employee/department/{employeeId}/{departmentId}
+
+#ASSIGN MNGR
+http://localhost:8080/employee/manager/{employeeId}/{managerId}
+
+#UNASSIGN 
+http://localhost:8080/employee/teams/{employeeId} 
+http://localhost:8080/employee/department/{employeeId}
+http://localhost:8080/employee/manager/{employeeId}

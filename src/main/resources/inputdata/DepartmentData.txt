@@ -1,0 +1,29 @@
+#POST
+http://localhost:8080/department
+
+{
+  "departmentName": "Information Technology"
+}
+
+{
+  "departmentName": "Human Resources"
+}
+
+{
+  "departmentName": "Finance"
+}
+
+{
+  "departmentName": "Quality Assurance"
+}
+
+#GET
+http://localhost:8080/department/1
+
+http://localhost:8080/department
+
+#UPDATE
+http://localhost:8080/department/1
+
+#DELETE
+http://localhost:8080/department/1

@@ -15,4 +15,18 @@ public interface TeamsService {
 	public void updateTeams(Integer teamsId, TeamsDTO dto) throws EmployeeException;
 
 	public void deleteTeams(Integer teamsId) throws EmployeeException;
+
+	public void asssignManager(Integer teamsId, Integer managerId) throws EmployeeException;
+
+	public void asssignDepartment(Integer teamsId, Long departmentId) throws EmployeeException;
+
+	void changeTeamManager(Integer teamId, Integer newManagerId);
+
+//	void assignManagerToTeam(Integer teamId, Integer managerId) throws EmployeeException;
+
+	void assignEmployeeToTeam(Integer teamId, Integer employeeId) throws EmployeeException;
+
+//	public void asssignManager(Integer teamsId) throws EmployeeException;
+//	public void asssignDepartment(Integer teamsId) throws EmployeeException;
+
 }

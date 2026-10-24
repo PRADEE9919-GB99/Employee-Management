@@ -1,7 +1,7 @@
 package com.pradeep.Employee_Management.controller;
 
 import java.util.List;
-import jakarta.validation.Valid;
+
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +32,7 @@ public class AddressController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> addAddress(@Valid @RequestBody AddressDTO addressDTO) throws EmployeeException {
+	public ResponseEntity<String> addAddress(@RequestBody AddressDTO addressDTO) throws EmployeeException {
 
 		Integer addressId = addressService.createAddress(addressDTO);
 		String message = environment.getProperty("ADDRESS.API.SUCCESS");

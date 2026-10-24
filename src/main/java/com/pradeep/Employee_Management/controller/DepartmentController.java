@@ -73,4 +73,22 @@ public class DepartmentController {
 		String message = environment.getProperty("DEPARTMENT.API.DELETE_SUCCESS");
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
+
+//	@PutMapping("/{id}/employee/{employeeId}")
+//	public ResponseEntity<String> assignEmployee(@PathVariable Long id, @PathVariable Integer employeeId)
+//			throws EmployeeException {
+//
+//		departmentService.assignEmployee(id, employeeId);
+//		String message = environment.getProperty("DEPARTMENT.API.ASSIGNE_EMPLOYEE_SUCCESS");
+//		return ResponseEntity.ok(message);
+//	}
+
+	@PutMapping("/{id}/teams/{teamsId}")
+	public ResponseEntity<String> assignTeamToDepartment(@PathVariable Long id, @PathVariable Integer teamsId)
+			throws EmployeeException {
+
+		departmentService.assignTeamToDepartment(id, teamsId);
+		String message = environment.getProperty("DEPARTMENT.API.ASSIGN_TEAMS_SUCCESS");
+		return ResponseEntity.ok(message);
+	}
 }

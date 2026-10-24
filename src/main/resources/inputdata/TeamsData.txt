@@ -1,0 +1,62 @@
+#POST
+http://localhost:8080/teams
+
+{
+  "teamName": "Development Team",
+  "manager": {
+    "managerId": 1
+  },
+  "department": {
+    "departmentId": 1
+  }
+}
+
+{
+  "teamName": "Development Team",
+  "manager": {
+    "managerId": 1
+  },
+  "department": {
+    "departmentId": 1
+  }
+}
+
+{
+  "teamName": "Testing Team",
+  "manager": {
+    "managerId": 2
+  },
+  "department": {
+    "departmentId": 2
+  }
+}
+
+{
+  "teamName": "Support Team",
+  "manager": {
+    "managerId": 3
+  },
+  "department": {
+    "departmentId": 1
+  }
+}
+
+#GET
+http://localhost:8080/teams/1
+http://localhost:8080/teams
+
+#PUT
+http://localhost:8080/teams/1
+
+{
+  "teamName": "Automation Testing Team",
+  "manager": {
+    "managerId": 1
+  },
+  "department": {
+    "departmentId": 1
+  }
+}
+
+#DELETE
+http://localhost:8080/teams/1

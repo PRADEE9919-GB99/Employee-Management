@@ -19,4 +19,7 @@ public interface ProjectsService {
 	List<ProjectsDTO> getProjectsByEmployee(Integer employeeId) throws EmployeeException;
 
 	List<ProjectsDTO> getProjectsByManager(Integer managerId) throws EmployeeException;
+	
+	void assignProject(Long id,Integer employeeid) throws EmployeeException;
+	void assignManager(Long id,Integer mangerid) throws EmployeeException;
 }

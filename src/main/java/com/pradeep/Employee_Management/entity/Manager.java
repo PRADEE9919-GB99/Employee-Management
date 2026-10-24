@@ -1,8 +1,10 @@
+
 package com.pradeep.Employee_Management.entity;
 
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,17 +14,21 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Manager {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer managerId;
-	@OneToOne(optional = false)
-	@JoinColumn(name = "employee_id", unique = true)
+
+	@OneToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "employee_id", unique = true, nullable = false)
 	private Employee employee;
 
-	@OneToOne(mappedBy = "manager")
-	private Teams team;
+	@OneToMany(mappedBy = "manager")
+	private List<Teams> teams;
+
 	@OneToMany(mappedBy = "manager")
 	private List<Employee> employees;
+
 	@OneToMany(mappedBy = "manager")
 	private List<Projects> projectsMentored;
 
@@ -42,20 +48,12 @@ public class Manager {
 		this.employee = employee;
 	}
 
-	public Teams getTeam() {
-		return team;
+	public List<Teams> getTeams() {
+		return teams;
 	}
 
-	public void setTeam(Teams team) {
-		this.team = team;
-	}
-
-	public List<Employee> getEmployees() {
-		return employees;
-	}
-
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
+	public void setTeams(List<Teams> teams) {
+		this.teams = teams;
 	}
 
 	public List<Projects> getProjectsMentored() {
@@ -66,4 +64,19 @@ public class Manager {
 		this.projectsMentored = projectsMentored;
 	}
 
+	public List<Teams> getTeam() {
+		return teams;
+	}
+
+	public void setTeam(List<Teams> team) {
+		this.teams = team;
+	}
+
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
 }

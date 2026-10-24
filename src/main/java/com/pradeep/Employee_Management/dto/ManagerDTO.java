@@ -5,7 +5,7 @@ import java.util.List;
 public class ManagerDTO {
 	private Integer managerId;
 	private EmployeeDTO employee;
-	private TeamsDTO team;
+	private List<TeamsDTO> teams;
 	private List<EmployeeDTO> employees;
 	private List<ProjectsDTO> projectsMentored;
 
@@ -41,12 +41,13 @@ public class ManagerDTO {
 		this.projectsMentored = projectsMentored;
 	}
 
-	public void setTeam(TeamsDTO team) {
-		this.team = team;
+
+	public void setTeams(List<TeamsDTO> teams) {
+		this.teams = teams;
 	}
 
-	public TeamsDTO getTeam() {
-		return team;
+	public List<TeamsDTO> getTeams() {
+		return teams;
 	}
 
 }

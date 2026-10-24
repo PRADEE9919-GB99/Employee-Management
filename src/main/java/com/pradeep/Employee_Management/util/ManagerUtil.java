@@ -1,5 +1,8 @@
+
 package com.pradeep.Employee_Management.util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
@@ -17,12 +20,16 @@ import com.pradeep.Employee_Management.exception.EmployeeException;
 @Component
 public class ManagerUtil {
 
-	public static Manager toEntity(ManagerDTO dto) throws EmployeeException {
-
-		return toEntity(dto, null, null);
+	private ManagerUtil() {
 	}
 
-	public static Manager toEntity(ManagerDTO dto, Employee employee, Teams team) throws EmployeeException {
+	// Convert ManagerDTO to Manager entity
+	public static Manager toEntity(ManagerDTO dto) throws EmployeeException {
+		return toEntity(dto, null, new ArrayList<>());
+	}
+
+	// Convert ManagerDTO to Manager entity with employee and teams
+	public static Manager toEntity(ManagerDTO dto, Employee employee, List<Teams> teams) throws EmployeeException {
 
 		if (dto == null) {
 			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
@@ -30,13 +37,14 @@ public class ManagerUtil {
 
 		Manager manager = new Manager();
 
-//		manager.setManagerId(dto.getManagerId());
+		manager.setManagerId(dto.getManagerId());
 		manager.setEmployee(employee);
-		manager.setTeam(team);
+		manager.setTeams(teams != null ? teams : new ArrayList<>());
 
 		return manager;
 	}
 
+	// Convert Manager entity to ManagerDTO
 	public static ManagerDTO toDTO(Manager manager) throws EmployeeException {
 
 		if (manager == null) {
@@ -49,41 +57,52 @@ public class ManagerUtil {
 
 		// Map the employee associated with the manager
 		if (manager.getEmployee() != null) {
-			EmployeeDTO employeeDTO = EmployeeUtil.toDTO(manager.getEmployee());
-
-			dto.setEmployee(employeeDTO);
+			dto.setEmployee(EmployeeUtil.toDTO(manager.getEmployee()));
 		}
 
-		// Map team summary without recursive manager mapping
-		if (manager.getTeam() != null) {
-			TeamsDTO teamsDTO = new TeamsDTO();
+		// Map teams without recursive manager mapping
+		if (manager.getTeams() != null) {
+			List<TeamsDTO> teamsDTO = manager.getTeams().stream().map(ManagerUtil::toTeamSummary)
+					.collect(Collectors.toList());
 
-			teamsDTO.setTeamsId(manager.getTeam().getTeamsId());
-			teamsDTO.setTeamName(manager.getTeam().getTeamName());
-
-			dto.setTeam(teamsDTO);
+			dto.setTeams(teamsDTO);
+		} else {
+			dto.setTeams(new ArrayList<>());
 		}
 
-		// Map employees managed by this manager
-		if (manager.getEmployees() != null) {
-			dto.setEmployees(manager.getEmployees().stream().map(employee -> {
-				try {
-					return EmployeeUtil.toDTO(employee);
-				} catch (EmployeeException e) {
-					throw new IllegalStateException(e);
-				}
-			}).collect(Collectors.toList()));
-		}
+		// Map employees reporting to this manager
+		// Requires Employee.manager to exist in the entity
+		List<EmployeeDTO> employeesDTO = new ArrayList<>();
 
-		// Map mentored project summaries
+		// Employees reporting to this manager
+
+		dto.setEmployees(employeesDTO);
+
+		// Map projects mentored by the manager
 		if (manager.getProjectsMentored() != null) {
-			dto.setProjectsMentored(manager.getProjectsMentored().stream().map(ManagerUtil::toProjectSummary)
-					.collect(Collectors.toList()));
+			List<ProjectsDTO> projectsDTO = manager.getProjectsMentored().stream().map(ManagerUtil::toProjectSummary)
+					.collect(Collectors.toList());
+
+			dto.setProjectsMentored(projectsDTO);
+		} else {
+			dto.setProjectsMentored(new ArrayList<>());
 		}
 
 		return dto;
 	}
 
+	// Lightweight TeamsDTO to avoid recursive mapping
+	private static TeamsDTO toTeamSummary(Teams team) {
+
+		TeamsDTO dto = new TeamsDTO();
+
+		dto.setTeamsId(team.getTeamsId());
+		dto.setTeamName(team.getTeamName());
+
+		return dto;
+	}
+
+	// Lightweight ProjectsDTO to avoid recursive mapping
 	private static ProjectsDTO toProjectSummary(Projects project) {
 
 		ProjectsDTO dto = new ProjectsDTO();

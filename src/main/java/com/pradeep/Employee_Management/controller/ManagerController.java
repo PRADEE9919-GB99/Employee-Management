@@ -69,9 +69,27 @@ public class ManagerController {
 	public ResponseEntity<String> deleteManager(@PathVariable Integer managerId) throws EmployeeException {
 
 		managerService.deleteManager(managerId);
-		String message = environment.getProperty("EMPLOYEE.API.DELETE_SUCCESS");
+		String message = environment.getProperty("MANAGER.API.DELETE_SUCCESS");
 
 		return ResponseEntity.status(HttpStatus.OK).body(message);
+	}
+
+	@PutMapping("/{id}/employee/{employeeId}")
+	public ResponseEntity<String> assignEmployee(@PathVariable Integer id, @PathVariable Integer employeeId)
+			throws EmployeeException {
+
+		managerService.assignEmployee(id, employeeId);
+		String message = environment.getProperty("MANAGER.API.ASSIGN_EMPLOYEE_SUCCESS");
+		return ResponseEntity.ok(message);
+	}
+
+	@PutMapping("/{id}/projects/{projectId}")
+	public ResponseEntity<String> assignProjects(@PathVariable Integer id, @PathVariable Integer projectId)
+			throws EmployeeException {
+
+		managerService.assignProjects(id, projectId);
+		String message = environment.getProperty("MANAGER.API.ASSIGN_PROJECTS_SUCCESS");
+		return ResponseEntity.ok(message);
 	}
 
 }

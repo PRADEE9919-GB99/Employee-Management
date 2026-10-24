@@ -6,13 +6,19 @@ import com.pradeep.Employee_Management.dto.DepartmentDTO;
 import com.pradeep.Employee_Management.exception.EmployeeException;
 
 public interface DepartmentService {
-	Long createDepartment(DepartmentDTO dto)throws EmployeeException ;
+	Long createDepartment(DepartmentDTO dto) throws EmployeeException;
 
-	DepartmentDTO getDepartmentById(Long id)throws EmployeeException ;
+	DepartmentDTO getDepartmentById(Long id) throws EmployeeException;
 
-	List<DepartmentDTO> getAllDepartments()throws EmployeeException ;
+	List<DepartmentDTO> getAllDepartments() throws EmployeeException;
 
-	DepartmentDTO updateDepartment(Long id, DepartmentDTO dto)throws EmployeeException ;
+	DepartmentDTO updateDepartment(Long id, DepartmentDTO dto) throws EmployeeException;
 
-	void deleteDepartment(Long id)throws EmployeeException ;
+	void deleteDepartment(Long id) throws EmployeeException;
+
+//	void assignEmployee(Long Id, Integer employeeId) throws EmployeeException;
+//	void assignTeams(Long Id, Integer teamsId) throws EmployeeException;
+
+	void assignTeamToDepartment(Long departmentId, Integer teamId) throws EmployeeException;
+
 }

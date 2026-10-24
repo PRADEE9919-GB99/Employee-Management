@@ -1,6 +1,5 @@
 package com.pradeep.Employee_Management.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -11,14 +10,15 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Department {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long departmentId;
-	private String DepartmentName;
+
+	private String departmentName;
+
 	@OneToMany(mappedBy = "department")
-	private List<Employee> employee;
-	@OneToMany(mappedBy = "department")
-	private List<Teams> teams = new ArrayList<>();
+	private List<Teams> teams;
 
 	public Long getDepartmentId() {
 		return departmentId;
@@ -29,19 +29,18 @@ public class Department {
 	}
 
 	public String getDepartmentName() {
-		return DepartmentName;
+		return departmentName;
 	}
 
 	public void setDepartmentName(String departmentName) {
-		DepartmentName = departmentName;
+		this.departmentName = departmentName;
 	}
 
-	public List<Employee> getEmployee() {
-		return employee;
+	public List<Teams> getTeams() {
+		return teams;
 	}
 
-	public void setEmployee(List<Employee> employee) {
-		this.employee = employee;
+	public void setTeams(List<Teams> teams) {
+		this.teams = teams;
 	}
-
 }

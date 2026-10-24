@@ -88,4 +88,22 @@ public class ProjectsController {
 
 		return ResponseEntity.ok(projects);
 	}
+
+	@PutMapping("{id}/employee/{employeeId}")
+	public ResponseEntity<String> assignProject(@PathVariable Long id, @PathVariable Integer employeeId)
+			throws EmployeeException {
+
+		projectService.assignProject(id, employeeId);
+		String message = environment.getProperty("PROJECTS.API.UPDATE_SUCCESS");
+		return ResponseEntity.ok(message);
+	}
+
+	@PutMapping("{id}/manager/{managerId}")
+	public ResponseEntity<String> assignManager(@PathVariable Long id, @PathVariable Integer managerId)
+			throws EmployeeException {
+
+		projectService.assignManager(id, managerId);
+		String message = environment.getProperty("PROJECTS.API.UPDATE_SUCCESS");
+		return ResponseEntity.ok(message);
+	}
 }

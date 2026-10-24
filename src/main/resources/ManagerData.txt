@@ -1,0 +1,30 @@
+#POST
+http://localhost:8080/manager
+
+{
+  "employee": {
+    "employeeId": 1
+  }
+}
+
+#GET
+http://localhost:8080/manager/1
+http://localhost:8080/manager
+
+#UPDATE
+http://localhost:8080/manager/1
+{
+  "managerId": 1,
+  "employee": {
+    "employeeId": 1
+  }
+}{
+  "managerId": 1,
+  "employee": {
+    "employeeId": 2
+  }
+}
+
+
+#DELETE
+http://localhost:8080/manager/1

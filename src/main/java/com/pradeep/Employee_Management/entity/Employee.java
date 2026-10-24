@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.pradeep.Employee_Management.enums.Gender;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,28 +15,39 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Employee {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer employeeId;
+
 	private String employeeName;
+
 	@Column(nullable = false, unique = true)
 	private String email;
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Gender gender;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "team_id")
 	private Teams team;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "department_id")
-	private Department department;
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "manager_id")
 	private Manager manager;
-	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+	@OneToOne
+	@JoinColumn(name = "profile_id", unique = true)
+	private Profile profile;
+
+	@OneToOne
+	@JoinColumn(name = "address_id", unique = true)
+	private Address address;
+
+	@OneToMany(mappedBy = "employee")
 	private List<Projects> projects;
 
 	public Integer getEmployeeId() {
@@ -80,12 +90,28 @@ public class Employee {
 		this.team = team;
 	}
 
-	public Department getDepartment() {
-		return department;
+	public Profile getProfile() {
+		return profile;
 	}
 
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List<Projects> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Projects> projects) {
+		this.projects = projects;
 	}
 
 	public Manager getManager() {
@@ -96,11 +122,7 @@ public class Employee {
 		this.manager = manager;
 	}
 
-	public List<Projects> getProjects() {
-		return projects;
-	}
-
-	public void setProjects(List<Projects> projects) {
-		this.projects = projects;
-	}
+	// Keep your existing getters and setters for these fields:
+	// employeeId, employeeName, email, gender, team,
+	// profile, address, and projects.
 }

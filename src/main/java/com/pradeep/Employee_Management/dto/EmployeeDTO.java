@@ -4,17 +4,18 @@ import java.util.List;
 
 import com.pradeep.Employee_Management.enums.Gender;
 
-
 public class EmployeeDTO {
 	private Integer employeeId;
 	private String employeeName;
 	private String email;
 
 	private Gender gender;
-	private TeamsDTO team;
-	private DepartmentDTO department;
-	private ManagerDTO manager;
-	private List<ProjectsDTO> projects;
+	private TeamsResponseDTO team;
+	private ProfileDTO profile;
+	private AddressDTO address;
+	private List<ProjectResponseDTO> projects;
+	private ManagerResponseDTO manager;
+	private DepartmentResponseDTO department;
 
 	public Integer getEmployeeId() {
 		return employeeId;
@@ -48,38 +49,52 @@ public class EmployeeDTO {
 		this.gender = gender;
 	}
 
-	
-
-	public DepartmentDTO getDepartment() {
-		return department;
+	public ProfileDTO getProfile() {
+		return profile;
 	}
 
-	public void setDepartment(DepartmentDTO department) {
-		this.department = department;
+	public void setProfile(ProfileDTO profile) {
+		this.profile = profile;
 	}
 
-	public ManagerDTO getManager() {
+	public AddressDTO getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressDTO address) {
+		this.address = address;
+	}
+
+	public ManagerResponseDTO getManager() {
 		return manager;
 	}
 
-	public void setManager(ManagerDTO manager) {
+	public void setManager(ManagerResponseDTO manager) {
 		this.manager = manager;
 	}
 
-	public List<ProjectsDTO> getProjects() {
-		return projects;
+	public void setTeam(TeamsResponseDTO team) {
+		this.team = team;
 	}
 
-	public void setProjects(List<ProjectsDTO> projects) {
-		this.projects = projects;
-	}
-
-	public TeamsDTO getTeam() {
+	public TeamsResponseDTO getTeam() {
 		return team;
 	}
 
-	public void setTeam(TeamsDTO team) {
-		this.team = team;
+	public void setDepartment(DepartmentResponseDTO department) {
+		this.department = department;
+	}
+
+	public DepartmentResponseDTO getDepartment() {
+		return department;
+	}
+
+	public void setProjects(List<ProjectResponseDTO> projects) {
+		this.projects = projects;
+	}
+
+	public List<ProjectResponseDTO> getProjects() {
+		return projects;
 	}
 
 }

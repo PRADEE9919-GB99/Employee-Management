@@ -2,8 +2,8 @@ package com.pradeep.Employee_Management.util;
 
 import org.springframework.stereotype.Component;
 
-import com.pradeep.Employee_Management.dto.DepartmentDTO;
-import com.pradeep.Employee_Management.dto.ManagerDTO;
+import com.pradeep.Employee_Management.dto.DepartmentResponseDTO;
+import com.pradeep.Employee_Management.dto.ManagerResponseDTO;
 import com.pradeep.Employee_Management.dto.TeamsDTO;
 import com.pradeep.Employee_Management.entity.Department;
 import com.pradeep.Employee_Management.entity.Manager;
@@ -48,18 +48,18 @@ public class TeamsUtil {
 		dto.setTeamName(teams.getTeamName());
 
 		if (teams.getDepartment() != null) {
-			DepartmentDTO departmentDTO = new DepartmentDTO();
+			DepartmentResponseDTO departmentDTO = new DepartmentResponseDTO();
 			departmentDTO.setDepartmentId(teams.getDepartment().getDepartmentId());
 			departmentDTO.setDepartmentName(teams.getDepartment().getDepartmentName());
 
 			dto.setDepartment(departmentDTO);
 		}
-
+		Manager manager = teams.getManager();
 		if (teams.getManager() != null) {
-			ManagerDTO managerDTO = new ManagerDTO();
-			managerDTO.setManagerId(teams.getManager().getManagerId());
-
-			dto.setManager(managerDTO);
+			ManagerResponseDTO managerResponse = new ManagerResponseDTO();
+			managerResponse.setManagerId(manager.getManagerId());
+			managerResponse.setManagerName(manager.getEmployee().getEmployeeName());
+			dto.setManagerResponseDTO(managerResponse);
 		}
 
 		return dto;

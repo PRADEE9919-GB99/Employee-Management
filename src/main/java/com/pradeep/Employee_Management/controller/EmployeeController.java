@@ -102,50 +102,86 @@ public class EmployeeController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(message);
 	}
+//
+//	@PutMapping("/department/{employeeId}/{departmentId}")
+//	public ResponseEntity<String> assignDepartment(@PathVariable Integer employeeId, @PathVariable Long departmentId)
+//			throws EmployeeException {
+//
+//		employeeService.assignDepartment(employeeId, departmentId);
+//		String message = environment.getProperty("EMPLOYEE.API.ASSIGN_DEPARTMENT");
+//
+//		return ResponseEntity.status(HttpStatus.OK).body(message);
+//	}
 
-	@PutMapping("/department/{employeeId}/{departmentId}")
-	public ResponseEntity<String> assignDepartment(@PathVariable Integer employeeId, @PathVariable Long departmentId)
+	@PutMapping("/{employeeId}/manager/{managerId}")
+	public ResponseEntity<String> assignManager(@PathVariable Integer employeeId, @PathVariable Integer managerId)
 			throws EmployeeException {
 
-		employeeService.assignDepartment(employeeId, departmentId);
-		String message = environment.getProperty("EMPLOYEE.API.ASSIGN_DEPARTMENT");
-
-		return ResponseEntity.status(HttpStatus.OK).body(message);
-	}
-
-	@PutMapping("/manager/{employeeId}/{managerId}")
-	public ResponseEntity<String> assignManager(Integer employeeId, Integer managerId) throws EmployeeException {
-
-		employeeService.assignManager(employeeId, managerId);
+		employeeService.assignReportingManager(employeeId, managerId);
 		String message = environment.getProperty("EMPLOYEE.API.ASSIGN_MANAGER");
 
 		return ResponseEntity.status(HttpStatus.OK).body(message);
 	}
 
-	@PutMapping("/teams/{employeeId}")
-	public ResponseEntity<String> unAssignTeam(@PathVariable Integer employeeId) throws EmployeeException {
+//	@PutMapping("/teams/{employeeId}")
+//	public ResponseEntity<String> unAssignTeam(@PathVariable Integer employeeId) throws EmployeeException {
+//
+//		employeeService.unAssignTeam(employeeId);
+//		String message = environment.getProperty("EMPLOYEE.API.UNASSIGN_SUCCESSS");
+//
+//		return ResponseEntity.status(HttpStatus.OK).body(message);
+//	}
 
-		employeeService.unAssignTeam(employeeId);
-		String message = environment.getProperty("EMPLOYEE.API.UNASSIGN_SUCCESSS");
+//	@PutMapping("/department/{employeeId}")
+//	public ResponseEntity<String> unAassignDepartment(@PathVariable Integer employeeId) throws EmployeeException {
+//
+//		employeeService.unAssignTeam(employeeId);
+//		String message = environment.getProperty("EMPLOYEE.API.UNASSIGN_SUCCESSS_DEPT");
+//
+//		return ResponseEntity.status(HttpStatus.OK).body(message);
+//	}
+//
+//	@PutMapping("/manager/{employeeId}")
+//	public ResponseEntity<String> unAassignManager(@PathVariable Integer employeeId) throws EmployeeException {
+//
+//		employeeService.unAassignManager(employeeId);
+//		String message = environment.getProperty("EMPLOYEE.API.UNASSIGN_SUCCESSS_MNGR");
+//
+//		return ResponseEntity.status(HttpStatus.OK).body(message);
+//	}
 
-		return ResponseEntity.status(HttpStatus.OK).body(message);
+	@PutMapping("/{employeeId}/profile/{profileId}")
+	public ResponseEntity<String> assignProfile(@PathVariable Integer employeeId, @PathVariable Integer profileId)
+			throws EmployeeException {
+
+		employeeService.assignProfile(employeeId, profileId);
+		String message = environment.getProperty("EMPLOYEE.API.ASSIGN_PROFILE_SUCCESS");
+		return ResponseEntity.ok(message);
 	}
 
-	@PutMapping("/department/{employeeId}")
-	public ResponseEntity<String> unAassignDepartment(@PathVariable Integer employeeId) throws EmployeeException {
+	@PutMapping("/{employeeId}/address/{addressId}")
+	public ResponseEntity<String> assignAddress(@PathVariable Integer employeeId, @PathVariable Integer addressId)
+			throws EmployeeException {
 
-		employeeService.unAssignTeam(employeeId);
-		String message = environment.getProperty("EMPLOYEE.API.UNASSIGN_SUCCESSS_DEPT");
-
-		return ResponseEntity.status(HttpStatus.OK).body(message);
+		employeeService.assignAddress(employeeId, addressId);
+		String message = environment.getProperty("EMPLOYEE.API.ASSIGN_ADDRESS_SUCCESS");
+		return ResponseEntity.ok(message);
 	}
 
-	@PutMapping("/manager/{employeeId}")
-	public ResponseEntity<String> unAassignManager(@PathVariable Integer employeeId) throws EmployeeException {
+	@PutMapping("/{employeeId}/projects/{projectId}")
+	public ResponseEntity<String> assignProjects(@PathVariable Integer employeeId, @PathVariable Long projectId)
+			throws EmployeeException {
 
-		employeeService.unAassignManager(employeeId);
-		String message = environment.getProperty("EMPLOYEE.API.UNASSIGN_SUCCESSS_MNGR");
+		employeeService.assignProjects(employeeId, projectId);
+		String message = environment.getProperty("EMPLOYEE.API.ASSIGN_PROJECTS_SUCCESS");
+		return ResponseEntity.ok(message);
+	}
 
-		return ResponseEntity.status(HttpStatus.OK).body(message);
+	@DeleteMapping("/{employeeId}/team")
+	public ResponseEntity<String> removeEmployeeFromTeam(@PathVariable Integer employeeId) throws EmployeeException {
+
+		employeeService.removeEmployeeFromTeam(employeeId);
+
+		return ResponseEntity.ok("EMPLOYEE.API.UNASSIGN_SUCCESSS");
 	}
 }

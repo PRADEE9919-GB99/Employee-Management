@@ -1,48 +1,33 @@
+
 package com.pradeep.Employee_Management.util;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.pradeep.Employee_Management.dto.DepartmentDTO;
+import com.pradeep.Employee_Management.dto.AddressDTO;
+import com.pradeep.Employee_Management.dto.DepartmentResponseDTO;
 import com.pradeep.Employee_Management.dto.EmployeeDTO;
-import com.pradeep.Employee_Management.dto.ManagerDTO;
-import com.pradeep.Employee_Management.dto.TeamsDTO;
+import com.pradeep.Employee_Management.dto.ManagerResponseDTO;
+import com.pradeep.Employee_Management.dto.ProfileDTO;
+import com.pradeep.Employee_Management.dto.ProjectResponseDTO;
+import com.pradeep.Employee_Management.dto.TeamsResponseDTO;
+import com.pradeep.Employee_Management.entity.Address;
 import com.pradeep.Employee_Management.entity.Department;
 import com.pradeep.Employee_Management.entity.Employee;
 import com.pradeep.Employee_Management.entity.Manager;
+import com.pradeep.Employee_Management.entity.Profile;
+import com.pradeep.Employee_Management.entity.Projects;
 import com.pradeep.Employee_Management.entity.Teams;
-import com.pradeep.Employee_Management.exception.EmployeeException;
+
 @Component
 public class EmployeeUtil {
 
-	public static Employee toEntity(EmployeeDTO dto) throws EmployeeException {
-		return toEntity(dto, null, null, null);
-	}
-
-	public static Employee toEntity(EmployeeDTO dto, Department department, Manager manager, Teams team)
-			throws EmployeeException {
-
-		if (dto == null) {
-			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
-		}
-
-		Employee employee = new Employee();
-
-		employee.setEmployeeId(dto.getEmployeeId());
-		employee.setEmployeeName(dto.getEmployeeName());
-		employee.setEmail(dto.getEmail());
-		employee.setGender(dto.getGender());
-
-		employee.setDepartment(department);
-		employee.setManager(manager);
-		employee.setTeam(team);
-
-		return employee;
-	}
-
-	public static EmployeeDTO toDTO(Employee employee) throws EmployeeException {
+	public static EmployeeDTO toDTO(Employee employee) {
 
 		if (employee == null) {
-			throw new EmployeeException("GENERAL.ITEM_NOT_NULL");
+			return null;
 		}
 
 		EmployeeDTO dto = new EmployeeDTO();
@@ -52,52 +37,146 @@ public class EmployeeUtil {
 		dto.setEmail(employee.getEmail());
 		dto.setGender(employee.getGender());
 
-		// Map Team
-		if (employee.getTeam() != null) {
-			TeamsDTO teamsDTO = new TeamsDTO();
+		// Team
+		Teams team = employee.getTeam();
 
-			teamsDTO.setTeamsId(employee.getTeam().getTeamsId());
-			teamsDTO.setTeamName(employee.getTeam().getTeamName());
+		TeamsResponseDTO teams = new TeamsResponseDTO();
+		teams.setTeamsId(team.getTeamsId());
+		teams.setTeamName(team.getTeamName());
+		teams.setManagerName(team.getManager().getEmployee().getEmployeeName());
+		dto.setTeam(teams);
 
-			dto.setTeam(teamsDTO);
+		// Department is obtained through Team
+		Department department = team.getDepartment();
+
+		DepartmentResponseDTO departmentDTO = new DepartmentResponseDTO();
+		departmentDTO.setDepartmentId(department.getDepartmentId());
+		departmentDTO.setDepartmentName(department.getDepartmentName());
+
+		dto.setDepartment(departmentDTO);
+
+		// Manager is obtained through Team
+		Manager manager = team.getManager();
+//
+//			if (manager != null) {
+//				ManagerDTO managerDTO = new ManagerDTO();
+//				managerDTO.setManagerId(manager.getManagerId());
+//
+//				dto.setManager(managerDTO);
+//			}
+		ManagerResponseDTO managerResponse = new ManagerResponseDTO();
+		managerResponse.setManagerId(manager.getManagerId());
+		managerResponse.setManagerName(manager.getEmployee().getEmployeeName());
+		dto.setManager(managerResponse);
+
+		// Address
+		Address address = employee.getAddress();
+
+		if (address != null) {
+			AddressDTO addressDTO = new AddressDTO();
+			addressDTO.setAddressId(address.getAddressId());
+			addressDTO.setCity(address.getCity());
+			addressDTO.setState(address.getState());
+			addressDTO.setCountry(address.getCountry());
+
+			dto.setAddress(addressDTO);
 		}
 
-		// Map Department
-		if (employee.getDepartment() != null) {
-			DepartmentDTO departmentDTO = new DepartmentDTO();
+		// Profile
+		Profile profile = employee.getProfile();
 
-			departmentDTO.setDepartmentId(employee.getDepartment().getDepartmentId());
-			departmentDTO.setDepartmentName(employee.getDepartment().getDepartmentName());
+		if (profile != null) {
+			ProfileDTO profileDTO = new ProfileDTO();
+			profileDTO.setProfileId(profile.getProfileId());
+			profileDTO.setStartDate(profile.getStartDate());
+			profileDTO.setEndDate(profile.getEndDate());
+			profileDTO.setDesignation(profile.getDesignation());
+			profileDTO.setEmployeePhoneNo(profile.getEmployeePhoneNo());
 
-			dto.setDepartment(departmentDTO);
+			dto.setProfile(profileDTO);
 		}
 
-		// Map Manager
-		if (employee.getManager() != null) {
-			ManagerDTO managerDTO = new ManagerDTO();
+		// Projects
+		if (employee.getProjects() != null) {
+			List<ProjectResponseDTO> projectDTOs = new ArrayList<>();
 
-			managerDTO.setManagerId(employee.getManager().getManagerId());
+			for (Projects project : employee.getProjects()) {
+				if (project == null) {
+					continue;
+				}
 
-			dto.setManager(managerDTO);
+				ProjectResponseDTO projectDTO = new ProjectResponseDTO();
+				projectDTO.setProjectId(project.getProjectId());
+				projectDTO.setProjectName(project.getProjectName());
+				projectDTO.setStatus(project.getStatus());
+
+				projectDTOs.add(projectDTO);
+			}
+
+			dto.setProjects(projectDTOs);
 		}
-
-		// Map Projects
-//		if (employee.getProjects() != null) {
-//			dto.setProjects(
-//					employee.getProjects().stream().map(EmployeeUtil::toProjectSummary).collect(Collectors.toList()));
-//		}
 
 		return dto;
 	}
 
-//	private static ProjectsDTO toProjectSummary(Projects project) {
+	public static Employee toEntity(EmployeeDTO dto) {
+
+		if (dto == null) {
+			return null;
+		}
+
+		Employee employee = new Employee();
+
+		employee.setEmployeeId(dto.getEmployeeId());
+		employee.setEmployeeName(dto.getEmployeeName());
+		employee.setEmail(dto.getEmail());
+		employee.setGender(dto.getGender());
+
+//		// Team reference
+//		if (dto.getTeam() != null && dto.getTeam().getTeamsId() != null) {
 //
-//		ProjectsDTO dto = new ProjectsDTO();
+//			Teams team = new Teams();
+//			team.setTeamsId(dto.getTeam().getTeamsId());
 //
-//		dto.setProjectId(project.getProjectId());
-//		dto.setProjectName(project.getProjectName());
-//		dto.setStatus(project.getStatus());
-//
-//		return dto;
-//	}
+//			employee.setTeam(team);
+//		}
+
+		// Address reference
+		if (dto.getAddress() != null && dto.getAddress().getAddressId() != null) {
+
+			Address address = new Address();
+			address.setAddressId(dto.getAddress().getAddressId());
+
+			employee.setAddress(address);
+		}
+
+		// Profile reference
+		if (dto.getProfile() != null && dto.getProfile().getProfileId() != null) {
+
+			Profile profile = new Profile();
+			profile.setProfileId(dto.getProfile().getProfileId());
+
+			employee.setProfile(profile);
+		}
+
+		// Project references
+		if (dto.getProjects() != null) {
+			List<Projects> projects = new ArrayList<>();
+
+			for (ProjectResponseDTO projectDTO : dto.getProjects()) {
+				if (projectDTO == null || projectDTO.getProjectId() == null) {
+					continue;
+				}
+
+				Projects project = new Projects();
+				project.setProjectId(projectDTO.getProjectId());
+
+				projects.add(project);
+			}
+
+			employee.setProjects(projects);
+		}
+
+		return employee;
+	}
 }

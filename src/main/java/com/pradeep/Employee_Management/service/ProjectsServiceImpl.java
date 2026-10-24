@@ -157,4 +157,23 @@ public class ProjectsServiceImpl implements ProjectsService {
 
 	}
 
+	@Override
+	public void assignProject(Long id, Integer employeeId) throws EmployeeException {
+		// TODO Auto-generated method stub
+		Projects project = projectsRepo.findById(id).orElseThrow(() -> new EmployeeException("PROJECT.NOT_FOUND"));
+		Employee employee = employeeRepo.findById(employeeId)
+				.orElseThrow(() -> new EmployeeException("EMPLOYEE.NOT_FOUND"));
+		
+		project.setEmployee(employee);
+	}
+
+	@Override
+	public void assignManager(Long id, Integer managerId) throws EmployeeException {
+		// TODO Auto-generated method stub
+		Projects project = projectsRepo.findById(id).orElseThrow(() -> new EmployeeException("PROJECT.NOT_FOUND"));
+		Manager manager = managerRepo.findById(managerId).orElseThrow(() -> new EmployeeException("MANAGER.NOT_FOUND"));
+		project.setManager(manager);
+		
+	}
+
 }

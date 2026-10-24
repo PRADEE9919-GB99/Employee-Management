@@ -1,3 +1,4 @@
+
 package com.pradeep.Employee_Management.entity;
 
 import com.pradeep.Employee_Management.enums.Status;
@@ -10,18 +11,30 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Projects {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long projectId;
+
+	@NotBlank
+	@Column(nullable = false)
 	private String projectName;
+
+	@NotNull
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private Status status;
+
 	@ManyToOne
 	@JoinColumn(name = "employee_id")
 	private Employee employee;
+
 	@ManyToOne
 	@JoinColumn(name = "manager_id")
 	private Manager manager;
@@ -65,5 +78,4 @@ public class Projects {
 	public void setManager(Manager manager) {
 		this.manager = manager;
 	}
-
 }
